@@ -1,0 +1,13 @@
+#root {}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  width: 100vw;
+  padding-left: 377px;
+  padding-right: 100px;
+  padding-block: 40px;
+}

@@ -1,0 +1,10 @@
+.logoFragmentWrap{
+    border-radius: 71px;
+    width: calc(100vw / 2);
+    height: 100vh;
+    box-shadow: -22px 4px 25px 0 rgba(0, 0, 0, 0.25);
+    background-color: #588157;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+}

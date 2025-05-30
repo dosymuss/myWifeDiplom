@@ -1,0 +1,60 @@
+.signUpForgetten{
+    display: flex;
+    justify-content: space-between;
+}
+
+.textInp{
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
+.passInp{
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
+.textInp input{
+    width: 100%;
+    height: 35px;
+    border: 2px solid #a3b18a;
+    border-radius: 10px;
+    padding-left: 10px ;
+}
+
+.passInp input{
+    width: 100%;
+    height: 35px;
+    border: 2px solid #a3b18a;
+    border-radius: 10px;
+    padding-left: 10px ;
+}
+
+.inputPass{
+    width: 100%;
+    height: 35px;
+    border:2px solid #a3b18a;
+    border-radius: 10px;
+    padding-left: 10px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inputPass input{
+border: none;
+height: 30px;
+outline: none;
+}
+
+.inputPass button{
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    margin-right: 10px;
+    outline: none;
+}
+
+.errText{
+    color: var(--red);
+    margin-top: 10px;
+}

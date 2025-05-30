@@ -1,0 +1,12 @@
+.tableWrap {
+    margin-top: 40px;
+
+    & p {
+        margin-bottom: 10px;
+    }
+}
+
+.mainTitle {
+    margin-bottom: 10px;
+
+}

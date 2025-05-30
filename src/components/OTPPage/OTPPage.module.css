@@ -1,0 +1,41 @@
+.forgettenPassWrap{
+    background-color: white;
+    border-radius: 50px;
+    width: 520px;
+    height: 586px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    margin: 44px;
+   
+}
+
+.forgettenPassContent{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column ;
+    justify-content: center;
+    align-items: center;
+}
+
+.main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #588157;
+}
+.imgWater{
+    height: 100vh;
+    width: 45vw;
+    object-fit: cover;
+    border-radius: 71px 0 0 71px;
+    box-shadow: -22px 4px 25px 0 rgba(0, 0, 0, 0.25);
+    background: url("path_to_image");
+}
+
+.pinInputTitle, .gmailTitle{
+    width: 100%;
+    text-align: start;
+    padding: 0 89px ;
+    margin-top: 10px;
+}
+

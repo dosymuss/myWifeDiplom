@@ -1,0 +1,48 @@
+.sidebar {
+    background-color: var(--green40);
+    width: 327px;
+    height: 100vh;
+    padding: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebarItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--white);
+
+    & p {
+        font-weight: 600;
+        font-size: 24px;
+    }
+}
+
+.sidebarItemActive {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--green100);
+
+    & p {
+        font-weight: 600;
+        font-size: 24px;
+    }
+}
+
+.sideItemWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.logoutBtn {
+    position: absolute;
+    left: 40px;
+    bottom: 40px;
+}

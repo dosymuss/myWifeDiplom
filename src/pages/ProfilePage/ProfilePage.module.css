@@ -1,0 +1,96 @@
+.title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    & h2 {
+        font-weight: 600;
+        font-size: 25px;
+        color: #000;
+    }
+
+    & button {
+        border-radius: 5px;
+        width: 40px;
+        height: 30px;
+        background: var(--green60);
+
+        & img {
+            width: 20px;
+        }
+    }
+}
+
+.mainWrap {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profileTextWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: calc(100vw - 200px - 700px);
+}
+
+
+.spinnerWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+    width: 100%;
+}
+
+.imageText {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.image {
+    border-radius: 10px;
+    width: 390px;
+    height: 401px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.sceleton {
+    border-radius: 10px;
+    width: 390px;
+    height: 401px;
+    margin-bottom: 20px;
+    background-color: var(--gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.profileTextTitle {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.profileText {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--green60);
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.recomeNotText {
+    border: 2px solid var(--green80);
+    padding: 40px 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--green60);
+
+
+}

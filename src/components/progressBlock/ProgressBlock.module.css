@@ -1,0 +1,33 @@
+.main {
+    background-color: var(--green20);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    width: 353px;
+    padding: 41px 22px 30px;
+
+}
+
+.title {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+
+
+.textBlock p:nth-child(1) {
+    font-weight: 600;
+    font-size: 18px;
+}
+.textBlock p:nth-child(2) {
+   margin-top: 5px;
+}
+
+
+
+
+.contentBlock {
+    display: flex;
+    align-items: center;
+
+}

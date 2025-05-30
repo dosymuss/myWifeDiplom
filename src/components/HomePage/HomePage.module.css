@@ -1,0 +1,12 @@
+.homePage{
+    display:flex;
+    align-items: flex-start;
+    /* height: 100vh; */
+    background-color: #588157;
+}
+
+.contentWrap{
+    margin-top:30px ;
+
+}
+

@@ -1,0 +1,34 @@
+.inp {
+    display: none;
+}
+
+.inp+span {
+    display: block;
+    border: 2px solid var(--black);
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+}
+
+.inp:checked+span {
+    display: block;
+    background-color: var(--green80);
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    background-image: url("../../../assets/task/mark.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.stepWrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stepsWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}

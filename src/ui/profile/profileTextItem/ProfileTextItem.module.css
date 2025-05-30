@@ -1,0 +1,15 @@
+.profileTextTitle {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.profileText {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--green60);
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,16 @@
+.btn{
+border-radius: 13px;
+padding: 16px 84px;
+width: 100%;
+height: 35px;
+background: #344e41;
+display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 20px 0;
+    color: white
+}
+
+.btn:disabled{
+    background-color: var(--gray);
+}

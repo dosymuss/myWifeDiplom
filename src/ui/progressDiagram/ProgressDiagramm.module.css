@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--green20);
+    /* цвет как на картинке */
+    border-radius: 50%;
+    width: fit-content;
+    padding: 10px;
+}
+
+.bg {
+    transition: stroke-dashoffset 0.5s;
+}
+
+.progress {
+    transform: rotate(-90deg);
+    transform-origin: center;
+    transition: stroke-dashoffset 0.5s;
+}

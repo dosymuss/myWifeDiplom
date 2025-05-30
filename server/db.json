@@ -1,0 +1,390 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Бакытова Нуржан Бакытовна",
+      "birthday": "19.04.2004",
+      "email": "nurzhan@gmail.com",
+      "recomeLetter": "",
+      "documents": [
+        {
+          "name": "resume",
+          "url": "resume.com"
+        },
+        {
+          "name": "resume",
+          "url": "resume.com"
+        }
+      ],
+      "image": "https://i.pinimg.com/736x/09/73/c6/0973c6391526489b03be49add7e15ca0.jpg",
+      "internship": {
+        "progress": {
+          "name": "Верстка тест проекта",
+          "dedline": "30.05.2025",
+          "percent": 20,
+          "status": "in_progress"
+        },
+        "results": {
+          "totalProjects": 10,
+          "completed": 6,
+          "daysLeft": 6,
+          "totalDays": 90
+        },
+        "tasks": [
+          {
+            "id": 1,
+            "name": "Сверстать хедер сайта",
+            "desc": "Сделать адаптивную шапку с меню и логотипом",
+            "progress": "30",
+            "status": "open",
+            "dedline": "сегодня",
+            "time": "2h"
+          },
+          {
+            "id": 2,
+            "name": "Добавить модалку регистрации",
+            "desc": "Форма с инпутами и кнопкой отправки",
+            "progress": "70",
+            "status": "not_completed",
+            "dedline": "завтра",
+            "time": "1.5h"
+          },
+          {
+            "id": 3,
+            "name": "Сделать карточки товаров",
+            "desc": "Сетка карточек с изображением, ценой и кнопкой",
+            "progress": "50",
+            "status": "in_progress",
+            "dedline": "через 2 дня",
+            "time": "3h"
+          },
+          {
+            "id": 4,
+            "name": "Адаптив для мобильных",
+            "desc": "Проверить мобильную версию и внести правки",
+            "progress": "90",
+            "status": "done",
+            "dedline": "сегодня",
+            "time": "1h"
+          },
+          {
+            "id": 5,
+            "name": "Стилизация футера",
+            "desc": "Подключить стили и сделать раздел контактов",
+            "progress": "100",
+            "status": "done",
+            "dedline": "вчера",
+            "time": "1h"
+          },
+          {
+            "id": 6,
+            "name": "Внедрение темной темы",
+            "desc": "Сделать переключатель темы и стили",
+            "progress": "60",
+            "status": "in_progress",
+            "dedline": "на следующей неделе",
+            "time": "2h"
+          },
+          {
+            "id": 7,
+            "name": "Тестирование формы обратной связи",
+            "desc": "Проверить отправку, валидацию и ошибки",
+            "progress": "0",
+            "status": "open",
+            "dedline": "завтра",
+            "time": "1h"
+          },
+          {
+            "id": 8,
+            "name": "Оптимизация изображений",
+            "desc": "Сжать изображения без потери качества",
+            "progress": "100",
+            "status": "done",
+            "dedline": "сегодня",
+            "time": "0.5h"
+          }
+        ]
+      }
+    }
+  ],
+  "company": {
+    "profile": {
+      "name": "Айым Тестова",
+      "birthday": "12.04.2007",
+      "email": "aim@mail.com",
+      "about_company": "Компания 'TechNova. — это команда профессионалов, специализирующаяся на разработке современных IT-решений для бизнеса. Мы создаём веб-приложения, мобильные платформы и e-commerce-системы, ориентируясь на качество, стабильность и удобство для пользователей. С момента основания мы успешно реализовали более 150 проектов в различных сферах: от розничной торговли и логистики до финансов и образования. Наш подход — это индивидуальное внимание к каждому клиенту, гибкая методология разработки и использование передовых технологий Мы верим, что цифровая трансформация должна быть доступной, эффективной и понятной. Именно поэтому наша миссия — помогать бизнесу расти и развиваться с помощью инноваций и опыта.",
+      "image": "https://i.pinimg.com/736x/7f/2c/a1/7f2ca141d75e9c46aa55a194c4dca983.jpg"
+    },
+    "interns": [
+      {
+        "internId": "1"
+      }
+    ],
+    "progress": {
+      "count": 7,
+      "no_done": 2,
+      "in_work": 24,
+      "completed": 50
+    }
+  },
+  "tasks": [
+    {
+      "id": "1",
+      "tegnologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "name": "Сверстать хедер сайта",
+      "desc": "Необходимо сверстать адаптивный хедер сайта, включающий логотип, навигационное меню с пунктами и иконку бургер-меню для мобильной версии. Хедер должен корректно отображаться на всех разрешениях экранов, быть фиксированным при прокрутке и иметь стилизацию в соответствии с дизайн-макетом. При клике на пункты меню должен происходить плавный скролл к соответствующим секциям страницы. Также желательно предусмотреть простую анимацию открытия мобильного меню.",
+      "steps": [
+        {
+          "is_done": true,
+          "step_text": "Создать файлы html и css"
+        },
+        {
+          "is_done": false,
+          "step_text": "Добавить структуру хедера"
+        },
+        {
+          "is_done": false,
+          "step_text": "Сверстать адаптивное меню"
+        }
+      ],
+      "links": [
+        "https://developer.mozilla.org/ru/docs/Web/HTML",
+        "https://htmlacademy.ru/blog/html/header",
+        "https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/"
+      ],
+      "done_desc": "После завершения задания шапка сайта должна корректно отображаться на всех устройствах. Меню должно быть кликабельным и адаптивным, логотип — на своем месте. Важно, чтобы код был чистым, использовалась семантическая верстка и применялись современные CSS технологии. Обязательно проверь отображение в мобильной и десктопной версиях.",
+      "status": "open",
+      "dedline": "сегодня",
+      "time": "2h"
+    },
+    {
+      "id": "2",
+      "tegnologies": [
+        "React",
+        "CSS Modules"
+      ],
+      "name": "Реализовать компонент карточки товара",
+      "desc": "Карточка должна отображать фото, название и цену товара",
+      "steps": [
+        {
+          "is_done": false,
+          "step_text": "Создать компонент ProductCard"
+        },
+        {
+          "is_done": false,
+          "step_text": "Подключить стили"
+        },
+        {
+          "is_done": false,
+          "step_text": "Добавить props для данных"
+        }
+      ],
+      "links": [
+        "https://react.dev/learn",
+        "https://blog.logrocket.com/css-modules-react/",
+        "https://ru.reactjs.org/docs/components-and-props.html"
+      ],
+      "done_desc": "",
+      "status": "in_progress",
+      "dedline": "завтра",
+      "time": "3h"
+    },
+    {
+      "id": "3",
+      "tegnologies": [
+        "JavaScript",
+        "Fetch API"
+      ],
+      "name": "Сделать загрузку данных с API",
+      "desc": "Получить список пользователей с сервера и вывести в таблицу",
+      "steps": [
+        {
+          "is_done": false,
+          "step_text": "Сделать fetch-запрос"
+        },
+        {
+          "is_done": false,
+          "step_text": "Обработать данные и ошибки"
+        },
+        {
+          "is_done": false,
+          "step_text": "Вывести пользователей в таблицу"
+        }
+      ],
+      "links": [
+        "https://developer.mozilla.org/ru/docs/Web/API/Fetch_API",
+        "https://learn.javascript.ru/fetch",
+        "https://jsonplaceholder.typicode.com/users"
+      ],
+      "done_desc": "",
+      "status": "open",
+      "dedline": "через 2 дня",
+      "time": "4h"
+    },
+    {
+      "id": "4",
+      "tegnologies": [
+        "SASS",
+        "BEM"
+      ],
+      "name": "Оптимизировать стили с использованием SASS",
+      "desc": "Разбить стили на модули, использовать переменные и миксины",
+      "steps": [
+        {
+          "is_done": false,
+          "step_text": "Установить и настроить SASS"
+        },
+        {
+          "is_done": false,
+          "step_text": "Создать переменные и миксины"
+        },
+        {
+          "is_done": false,
+          "step_text": "Переписать существующие стили"
+        }
+      ],
+      "links": [
+        "https://sass-lang.com/guide",
+        "https://ru.bem.info/methodology/",
+        "https://habr.com/ru/articles/236773/"
+      ],
+      "done_desc": "",
+      "status": "open",
+      "dedline": "на выходных",
+      "time": "2.5h"
+    },
+    {
+      "id": "5",
+      "tegnologies": [
+        "Git",
+        "GitHub"
+      ],
+      "name": "Настроить Git-репозиторий для проекта",
+      "desc": "Инициализировать git, создать .gitignore, загрузить проект на GitHub",
+      "steps": [
+        {
+          "is_done": false,
+          "step_text": "Создать локальный репозиторий"
+        },
+        {
+          "is_done": false,
+          "step_text": "Добавить и закоммитить файлы"
+        },
+        {
+          "is_done": false,
+          "step_text": "Загрузить проект на GitHub"
+        }
+      ],
+      "links": [
+        "https://git-scm.com/doc",
+        "https://guides.github.com/introduction/git-handbook/",
+        "https://habr.com/ru/articles/541258/"
+      ],
+      "done_desc": "",
+      "status": "done",
+      "dedline": "вчера",
+      "time": "1h"
+    },
+    {
+      "id": "223d",
+      "name": "Сделать форму регистрации",
+      "desc": "Создать форму регистрации с полями: имя, email, пароль и повтор пароля. Все поля должны проходить базовую валидацию. При успешной отправке данные отправляются на сервер. Предусмотреть отображение ошибок и успешного сообщения.",
+      "done_desc": "После выполнения задания форма должна валидировать данные, отправлять их на сервер и отображать соответствующее сообщение пользователю. Код должен быть чистым и хорошо структурированным.",
+      "dedline": "01.06.25",
+      "tegnologies": [
+        "React",
+        "Css modules",
+        "Formik"
+      ],
+      "steps": [
+        {
+          "is_done": false,
+          "step_text": "Создать компонент формы"
+        },
+        {
+          "is_done": false,
+          "step_text": "Добавить стейт и обработчики ввода"
+        },
+        {
+          "is_done": false,
+          "step_text": "Реализовать валидацию и отправку запроса"
+        }
+      ],
+      "links": [
+        "https://reactjs.org/docs/forms.html",
+        "https://reactjs.org/docs/forms.html"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "4772",
+      "name": "Сделать форму регистрации",
+      "desc": "Создать форму регистрации с полями: имя, email, пароль и повтор пароля. Все поля должны проходить базовую валидацию. При успешной отправке данные отправляются на сервер. Предусмотреть отображение ошибок и успешного сообщения.",
+      "done_desc": "После выполнения задания форма должна валидировать данные, отправлять их на сервер и отображать соответствующее сообщение пользователю. Код должен быть чистым и хорошо структурированным.",
+      "dedline": "01.06.25",
+      "tegnologies": [
+        "React",
+        "Css modules",
+        "Formik"
+      ],
+      "steps": [
+        {
+          "is_done": false,
+          "step_text": "Создать компонент формы"
+        },
+        {
+          "is_done": false,
+          "step_text": "Добавить стейт и обработчики ввода"
+        },
+        {
+          "is_done": false,
+          "step_text": "Реализовать валидацию и отправку запроса"
+        }
+      ],
+      "links": [
+        "https://reactjs.org/docs/forms.html",
+        "https://reactjs.org/docs/forms.html"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "9dc7",
+      "name": "",
+      "desc": "",
+      "done_desc": "",
+      "dedline": "",
+      "tegnologies": [],
+      "steps": [],
+      "links": [],
+      "status": "open"
+    },
+    {
+      "id": "2560",
+      "name": "test",
+      "desc": "testtesttrestrestfhsgfghjshgfgh",
+      "done_desc": "После выполнения задания форма должна валидировать данные, отправлять их на сервер и отображать соответствующее сообщение пользователю. Код должен быть чистым и хорошо структурированным.",
+      "dedline": "19.04.2004",
+      "tegnologies": [
+        "React"
+      ],
+      "steps": [
+        {
+          "is_done": false,
+          "step_text": "test1"
+        },
+        {
+          "is_done": false,
+          "step_text": "test2"
+        }
+      ],
+      "links": [
+        "https://local"
+      ],
+      "status": "open"
+    }
+  ]
+}

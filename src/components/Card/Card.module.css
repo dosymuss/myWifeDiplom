@@ -1,0 +1,54 @@
+.cardWrap{
+    background-color: white;
+    border-radius: 40px;
+    width: 800px;
+    height: auto;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: #fff;
+    padding: 40px 30px;
+    margin-bottom: 20px ;
+    
+}
+
+.buttonCard{
+    border-radius: 13px;
+    padding: 16px 84px;
+    width: 829px;
+    height: 69px;
+    background: #344e41;
+}
+
+
+.price{
+font-size: 30px;
+color: #000;
+margin: 20px 0;
+font-weight: bold;
+}
+
+.buttonWant{
+    background: #344e41;
+    border-radius: 13px;
+    width: 100%;
+    height: 69px;
+font-weight: 600;
+font-size: 24px;
+text-align: center;
+color: #fff;
+    
+}
+
+.titleandFav{
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
+}
+.titleandFav button {
+    border:none;
+    background-color: transparent;
+}
+
+.titleandFav button svg{
+    width:40px;
+    height:40px;
+}

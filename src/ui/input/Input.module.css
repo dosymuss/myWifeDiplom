@@ -1,0 +1,36 @@
+.main {
+    & p {
+        font-weight: 600;
+        font-size: 18px;
+        color: #000;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+
+    & input {
+        width: 100%;
+        border: 2px solid var(--green40);
+        border-radius: 8px;
+        height: 45px;
+        padding-left: 10px;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    & textarea {
+        width: 100%;
+        border: 2px solid var(--green40);
+        border-radius: 8px;
+        height: 200px;
+        padding: 10px;
+        font-weight: 400;
+        font-size: 16px;
+        resize: none;
+    }
+}
+
+.errText {
+    color: var(--red);
+    font-size: 14px;
+    margin-top: 7px;
+}

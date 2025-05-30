@@ -1,0 +1,67 @@
+.container {
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+
+.container::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+
+
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+th {
+    background-color: var(--green20);
+    font-weight: 600;
+}
+
+.statusButton {
+    background-color: var(--openBtn);
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.statusButton:hover {
+    background-color: #1f4ac0;
+}
+
+.internAction {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    & button {
+        background: var(--green100);
+        border-radius: 10px;
+        width: 75px;
+        height: 43px;
+    }
+}
