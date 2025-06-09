@@ -1,7 +1,8 @@
+import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import { useUser } from '../../store'
 import ProgressBlock from '../../components/progressBlock/ProgressBlock'
 import Table from '../../components/table/Table'
-import { useUser } from '../../store'
 import ResultBlock from '../../ui/resultBlock/ResultBlock'
 
 import styles from "./HomePage.module.css"
@@ -11,8 +12,14 @@ const HomePage = () => {
     const { tasks } = useUser(state => state.internship)
     const getProfile = useUser(state => state.getProfile)
 
+    const navigate = useNavigate()
+
+    const isAuth = localStorage.getItem("is_auth")
+
     useEffect(() => {
-        getProfile()
+        if (!isAuth) {
+            navigate("/login")
+        } 
     }, [])
 
     return (

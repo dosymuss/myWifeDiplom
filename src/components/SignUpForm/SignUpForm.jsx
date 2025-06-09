@@ -1,21 +1,24 @@
-import React from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from "formik";
 
 import Input from "../../ui/olgInp/Input";
 import Button from "../../ui/oldBtn/Button";
 import AuthTitle from "../../ui/AuthTitle/AuthTitle";
+import { validationRegister } from "../../code/validation";
 
 import styles from "./SignUpForm.module.css";
-import { validationRegister } from "../../code/validation";
+import { register } from '../../api/hr';
+import { useState } from 'react';
 
 const SignUpForm = () => {
 
   const navigate = useNavigate()
 
+  const [queryErr, setQueryErr] = useState(null)
+
   const formik = useFormik({
     initialValues: {
-      nickname: "",
+      name: "",
       email: "",
       password: "",
       confirm_password: ""
@@ -24,9 +27,24 @@ const SignUpForm = () => {
     validateOnChange: true,
     onSubmit: (values) => {
       console.log(values);
-      navigate("/login")
 
-
+      const createCompanyObj = {
+        hr: {
+          role: "hr",
+          ...values
+        },
+        supervisor: [],
+        interns: []
+      }
+      register(createCompanyObj).then((res) => {
+        console.log(res);
+        if (res.status === 201) {
+          navigate("/login")
+        }
+      }).catch((err) => {
+        console.log(err.message);
+        setQueryErr(err.message)
+      })
     }
   })
 
@@ -43,12 +61,12 @@ const SignUpForm = () => {
           err={formik.errors.email} />
 
         <Input
-          name="nickname"
-          value={formik.values.nickname}
+          name="name"
+          value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder={"Nickname"} title={"Your nickname"}
-          err={formik.errors.nickname} />
+          placeholder={"Name"} title={"Your Name"}
+          err={formik.errors.name} />
 
         <Input
           name="password"
@@ -76,6 +94,7 @@ const SignUpForm = () => {
         // login={true}
         />
         <Button disabled={!formik.isValid} onClick={formik.handleSubmit} buttonText={"Sign up"} />
+        {queryErr && <p className={styles.errText}>{queryErr}</p>}
         <p>Do you already have an account? <Link to="/login" >Sign in</Link>  </p>
       </div>
     </div>

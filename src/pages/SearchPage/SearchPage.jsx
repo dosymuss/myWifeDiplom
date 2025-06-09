@@ -5,15 +5,31 @@ import { useUser } from '../../store'
 
 import styles from "./SearchPage.module.css"
 import { useTask } from '../../store/task'
+import { useCompany } from '../../store/company'
 
 const SearchPage = () => {
-   
-    const fetchGetTasks = useTask(state=>state.fetchGetTasks)
-    const tasks = useTask(state=>state.tasks)
+
+    const companyId = localStorage.getItem("companyId")
+
+    const companies = useCompany(state => state.companies)
+    const getCompanyStatus = useCompany(state => state.getCompanyStatus)
+    const fetchGetCompany = useCompany(state => state.fetchGetCompany)
+
+    const tasks = useTask(state => state.tasks)
+    const setTasks = useTask(state => state.setTasks)
 
     useEffect(() => {
-        fetchGetTasks()
+        fetchGetCompany()
     }, [])
+
+    useEffect(() => {
+        if (getCompanyStatus === "fulfilled") {
+            const company = companies?.find((item) => item.id === companyId)
+            if (company) {
+                setTasks(company.tasks)
+            }
+        }
+    }, [companies, getCompanyStatus])
 
 
 

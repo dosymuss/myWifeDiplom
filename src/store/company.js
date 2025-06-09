@@ -1,26 +1,25 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { getCompanyInfo } from "../api/company";
+import { getCompanies } from "../api/company";
 
 
 
 export const useCompany = create(devtools(
     (set) => ({
-        company: {},
-        companyStatus: "",
-        progress: {},
+        companies: [],
+        getCompanyStatus: "",
+        getCompanyErr: "",
         fetchGetCompany: async () => {
             try {
-                set({ companyStatus: "pending" })
-                const res = await getCompanyInfo()
-                console.log(res);
+                set({ getCompanyStatus: "pending" })
+                const res = await getCompanies()
 
-                set({ company: res.profile })
-                set({ progress: res.progress })
-                set({ companyStatus: "fulfilled" })
+                set({ companies: res })
+                set({ getCompanyStatus: "fulfilled" })
 
             } catch (error) {
                 set({ companyStatus: "rejected" })
+                set({ getCompanyStatus: error?.message })
             }
         }
     })

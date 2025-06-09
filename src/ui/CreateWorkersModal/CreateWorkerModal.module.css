@@ -1,0 +1,77 @@
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    width: 90%;
+    padding: 40px;
+
+}
+
+.dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modalWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.titleCloseWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & h3 {
+        font-weight: 600;
+        font-size: 24px;
+    }
+}
+
+.codeBlocks {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.codeBlock {
+    height: 45px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: var(--gray);
+}
+
+.inpTitle {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.btnsWrap {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.btnsWrap button {
+    height: 45px;
+    padding: 0 10px;
+    border-radius: 5px;
+    background-color: var(--green80);
+    font-size: 18px;
+    color: white;
+}
+
+.btnsWrap button:nth-child(2){
+    background-color: var(--gray);
+    color: black;
+}

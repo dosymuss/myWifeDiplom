@@ -15,6 +15,12 @@ import InternList from './pages/InternList/InternList.jsx'
 import TaskList from './pages/TaskList/TaskList.jsx'
 import LoginPage from './pages/LoginPage/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage/RegisterPage.jsx'
+import HrProfile from './pages/HrProfile/HrProfile.jsx'
+import EditHrCompany from './pages/EditHrCompany/EditHrCompany.jsx'
+import CreateWorkersProfile from './pages/CreateWorkersProfile/CreateWorkersProfile.jsx'
+import InternSuperSign from './pages/InternSuperSign/InternSuperSign.jsx'
+import SuperProfile from './pages/superProfile/SuperProfile.jsx'
+import EditSuper from './pages/EditSuper/EditSuper.jsx'
 
 
 
@@ -30,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />
+  },
+  {
+    path: "/worker-sign",
+    element: <InternSuperSign />
   },
   {
     path: "/",
@@ -70,7 +80,27 @@ const router = createBrowserRouter([
       {
         path: "/task-list",
         element: <TaskList />
-      }
+      },
+      {
+        path: "/hr_profile",
+        element: <HrProfile />
+      },
+      {
+        path: "/edit-hr",
+        element: <EditHrCompany />
+      },
+      {
+        path: "/create-worker",
+        element: <CreateWorkersProfile />
+      },
+      {
+        path: "/super-profile",
+        element: <SuperProfile />
+      },
+       {
+        path: "/edit-super",
+        element: <EditSuper />
+      },
     ]
   }
 ])

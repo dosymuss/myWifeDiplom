@@ -33,3 +33,8 @@
     height: 20px;
     border-radius: 50%;
 }
+
+.errText {
+    color: var(--red);
+    margin-block: 10px;
+}

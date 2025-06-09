@@ -24,8 +24,8 @@ const Input = ({ title, placeholder, password, login, err, ...props }) => {
     return (
       <div className={style.passInp}>
         <div className={style.signUpForgetten}>
-          <p>{title}</p>
-          {login ? <a href="#"><Link to="/forgetten-password">Forgetten password</Link></a> : null}
+          <p className={style.inpTitle}>{title}</p>
+          {login ? <Link to="#">Forgetten password</Link> : null}
         </div>
         <div className={style.inputPass}>
           <input type={type} placeholder={placeholder} {...props} />
@@ -39,7 +39,7 @@ const Input = ({ title, placeholder, password, login, err, ...props }) => {
   } else {
     return (
       <div className={style.textInp}>
-        <p>{title}</p>
+        <p className={style.inpTitle}>{title}</p>
         <input type="text" placeholder={placeholder} {...props} />
         {err && <p className={style.errText}>{err}</p>}
       </div>

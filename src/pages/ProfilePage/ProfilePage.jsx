@@ -11,6 +11,8 @@ import styles from "./ProfilePage.module.css"
 import { useUser } from "../../store"
 import { useEffect } from "react"
 import Spinner from "../../ui/spinner/Spinner"
+import { useCompany } from "../../store/company"
+import { useIntern } from "../../store/useIntern"
 
 const ProfileTitle = () => {
 
@@ -59,24 +61,40 @@ const RecomeLetter = ({ letter }) => {
 
 const ProfilePage = () => {
 
-    const getProfile = useUser(state => state.getProfile)
-    const profileStatus = useUser(state => state.profileStatus)
+    const companies = useCompany(state => state.companies)
+    const getCompanyStatus = useCompany(state => state.getCompanyStatus)
+    const fetchGetCompany = useCompany(state => state.fetchGetCompany)
 
+    const intern = useIntern(state => state.intern)
+    const interns = useIntern(state => state.interns)
+    const setIntern = useIntern(state => state.setIntern)
+    const setInterns = useIntern(state => state.setInterns)
+
+    const internId = localStorage.getItem("workerId")
+    const companyId = localStorage.getItem("companyId")
 
     useEffect(() => {
-        getProfile()
+        fetchGetCompany()
     }, [])
-    const profile = useUser(state => state.profile)
 
-    const { name, birthday, email, recomeLetter, documents, image, progress } = profile
+    useEffect(() => {
+        if (getCompanyStatus === "fulfilled") {
+            if (getCompanyStatus === "fulfilled") {
+                const company = companies?.find((item) => item.id === companyId)
+                const findIntern = company?.interns?.find((item) => item?.id === internId)
+                if (findIntern) {
+                    setIntern(findIntern)
+                    setInterns(company.interns)
+                }
+            }
+        }
+    }, [companies, getCompanyStatus])
 
 
-    console.log(profile);
 
 
 
-
-    if (profileStatus === "pending") {
+    if (getCompanyStatus === "pending") {
         return (
             <div className={styles.spinnerWrap}>
                 <Spinner style={{ width: "80px", height: "80px" }} />
@@ -90,15 +108,15 @@ const ProfilePage = () => {
 
                 <div className={styles.mainWrap}>
                     <div className={styles.profileTextWrap}>
-                        <ProfileTextItem title={"Мое ФИО"} text={name ? name : "Неизвестнов Неизвест Неизвестович"} />
-                        <ProfileTextItem title={"Дата рождения:"} text={birthday ? birthday : "00.00.0000"} />
-                        <ProfileTextItem title={"Моя почта"} text={email ? email : "unknow@gmail.com"} />
-                        <RecomeLetter letter={recomeLetter} />
-                        <DocumInp docum={documents} />
+                        <ProfileTextItem title={"Мое ФИО"} text={intern?.name ? intern.name : "Неизвестнов Неизвест Неизвестович"} />
+                        <ProfileTextItem title={"Дата рождения:"} text={intern?.birthday ? intern.birthday : "00.00.0000"} />
+                        <ProfileTextItem title={"Моя почта"} text={intern ? intern.email : "unknow@gmail.com"} />
+                        <RecomeLetter letter={intern.recomeLetter} />
+                        {/* <DocumInp docum={documents} /> */}
                     </div>
 
 
-                    <ImageBlock image={image ? image : null} />
+                    <ImageBlock image={intern ? intern.image : null} />
 
                 </div>
 

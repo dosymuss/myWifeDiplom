@@ -22,9 +22,12 @@ export const getTasks = async () => {
 
 export const postNewTask = async (task) => {
     try {
-        const res = await mainInstance.post("/tasks/", task)
+        const companyId = localStorage.getItem("companyId")
+        const res = await mainInstance.patch(`/${companyId}`, task)
         return res
     } catch (error) {
-        throw error
+        throw new Error(
+            error.response?.data?.message || "Произошла ошибка при создании задания"
+        );
     }
 }

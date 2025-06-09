@@ -1,17 +1,20 @@
 import { NavLink } from "react-router-dom"
-import logo from "../../assets/logo.svg"
+import { useEffect, useState } from "react"
 
+import logo from "../../assets/logo.svg"
 import HomeIcon from "../../assets/sidebar/HomeIcon"
 import ProfileIcon from "../../assets/sidebar/ProfileIcon"
 import SearchIcon from "../../assets/sidebar/SearchIcon"
 import Logout from "../../assets/sidebar/Logout"
+import StatisticsIcon from "../../assets/sidebar/Statistics"
+import ListIcon from "../../assets/sidebar/ListIcon"
 
 import styles from "./Sidebar.module.css"
 
 
-const SideItem = ({ img, text, path }) => {
+const SideItem = ({ img, text, path, ...props }) => {
     return (
-        <NavLink to={path} className={({ isActive }) => isActive ? styles.sidebarItemActive : styles.sidebarItem} >
+        <NavLink to={path} className={({ isActive }) => isActive ? styles.sidebarItemActive : styles.sidebarItem} {...props} >
             {img}
             <p>{text}</p>
         </NavLink>
@@ -19,6 +22,74 @@ const SideItem = ({ img, text, path }) => {
 }
 
 const Sidebar = () => {
+
+    const role = localStorage.getItem("companyRole")
+
+    const [sidebarItem, setSidebarItem] = useState([])
+
+
+    useEffect(() => {
+        if (role === "hr") {
+            const sidebarItems = [
+                {
+                    img: <StatisticsIcon />,
+                    text: "Статистика",
+                    path: "/profile-company"
+                },
+                {
+                    img: <ProfileIcon />,
+                    text: "Профиль",
+                    path: "/hr_profile"
+                }
+            ]
+            setSidebarItem(sidebarItems)
+        }
+        if (role === "super") {
+            const sidebarItems = [
+                {
+                    img: <ProfileIcon />,
+                    text: "Профиль",
+                    path: "/super-profile"
+                },
+                {
+                    img: <ListIcon />,
+                    text: "Задания",
+                    path: "/task-list"
+                },
+                
+                // {
+                //     img: <ProfileIcon />,
+                //     text: "Профиль",
+                //     path: "/hr_profile"
+                // }
+            ]
+            setSidebarItem(sidebarItems)
+        }
+        if (role === "intern") {
+            const sidebarItems = [
+                {
+                    img: <HomeIcon />,
+                    text: "Мои задачи",
+                    path: "/"
+                },
+                {
+                    img: <ProfileIcon />,
+                    text: "Профиль",
+                    path: "/profile"
+                },
+                {
+                    img: <SearchIcon />,
+                    text: "Поиск",
+                    path: "/search"
+                }
+            ]
+            setSidebarItem(sidebarItems)
+        }
+    }, [role])
+
+    if (role === "hr") {
+
+    }
 
     const sidebarItems = [
         {
@@ -29,7 +100,7 @@ const Sidebar = () => {
         {
             img: <ProfileIcon />,
             text: "Профиль",
-            path:"/profile"
+            path: "/profile"
         },
         {
             img: <SearchIcon />,
@@ -44,13 +115,15 @@ const Sidebar = () => {
             <img src={logo} alt="" />
             <div className={styles.sideItemWrap}>
                 {
-                    sidebarItems.map((item) => (
+                    sidebarItem.map((item) => (
                         <SideItem key={item.text} img={item.img} text={item.text} path={item.path} />
                     ))
                 }
             </div>
             <div className={styles.logoutBtn}>
-                <SideItem img={<Logout />} text={"Выйти"} />
+                <SideItem path={"/login"} img={<Logout />} text={"Выйти"} onClick={() => {
+                    localStorage.removeItem("is_auth")
+                }} />
             </div>
 
 

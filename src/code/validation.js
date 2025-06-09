@@ -7,6 +7,11 @@ export const validationForProfile = yup.object().shape({
     email: yup.string("Поле должно быть строкой").email("Введите правильную почту").required("Почта обязательна для заполнения"),
     image: yup.string("Поле должно быть строкой").url("Введите правильную ссылку на картинку").required("Картинка обязательна для заполнения")
 })
+
+export const validationForInterns = yup.object().shape({
+    email: yup.string("Поле должно быть строкой").email("Введите правильную почту").required("Почта обязательна для заполнения")
+})
+
 export const validationLogin = yup.object().shape({
     email: yup
         .string()
@@ -30,9 +35,9 @@ export const validationLogin = yup.object().shape({
 
 
 export const validationRegister = yup.object().shape({
-    nickname: yup
+    name: yup
         .string()
-        .required("Фамилия обязательна для заполнения"),
+        .required("Имя обязательна для заполнения"),
     email: yup
         .string()
         .typeError("Email должен быть строкой")

@@ -24,8 +24,13 @@
 }
 
 
-.internLink{
+.internLink {
     position: absolute;
     top: 20px;
-    left: 20px ;
+    left: 20px;
+}
+
+.errText {
+    color: var(--red);
+    margin-block: 10px;
 }

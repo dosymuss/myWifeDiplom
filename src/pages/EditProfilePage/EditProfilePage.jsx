@@ -1,6 +1,5 @@
 import { useFormik } from "formik"
 import { useEffect, useState } from "react"
-import { useUser } from "../../store"
 import { useNavigate } from "react-router-dom"
 
 import DocumInp from "../../components/profile/DocumInp/DocumInp"
@@ -9,6 +8,8 @@ import Input from "../../ui/input/Input"
 
 import { validationForProfile } from "../../code/validation"
 import imageSceleton from "../../assets/profileEdit/imageSceleton.svg"
+import { editInternProfile } from "../../api/interns"
+import { useIntern } from "../../store/useIntern"
 
 import styles from "./EditProfilePage.module.css"
 
@@ -34,26 +35,48 @@ const ImageBlock = ({ image }) => {
 const EditProfilePage = () => {
 
     const [image, setImage] = useState("")
+    const [queryErr, setQueryErr] = useState(null)
 
-    const fetchEditProfile = useUser(state => state.fetchEditProfile)
-    const profile = useUser(state => state.profile)
+
+    const intern = useIntern(state => state.intern)
+    const interns = useIntern(state => state.interns)
 
     const navigate = useNavigate()
 
 
     const formik = useFormik({
         initialValues: {
-            name: profile ? profile.name : "",
-            birthday: profile ? profile.birthday : "",
-            email: profile ? profile.email : "",
-            image: profile ? profile.image : ""
+            name: intern ? intern.name : "",
+            birthday: intern ? intern.birthday : "",
+            email: intern ? intern.email : "",
+            image: intern ? intern.image : ""
         },
         validateOnChange: true,
         validationSchema: validationForProfile,
         onSubmit: (values) => {
             console.log(values);
-            fetchEditProfile(values)
-            navigate("/profile")
+
+            const updatedInterns = interns.map(item =>
+                item.id === intern.id ? { ...item, ...values } : item
+            );
+
+            console.log(updatedInterns);
+            
+
+            const newIntern = {
+                interns: updatedInterns
+            };
+
+            console.log(newIntern);
+            
+
+            editInternProfile(newIntern)
+                .then((res) => {
+                    navigate("/profile")
+                })
+                .catch((err) => {
+                    setQueryErr(err.message);
+                });
         }
     })
 
@@ -71,6 +94,7 @@ const EditProfilePage = () => {
                     }} onBlur={formik.handleBlur} inpTitle={"Мой аватар"} placeholder={"https://..."} />
                     <DocumInp />
                     <Button type="submit" onClick={formik.handleSubmit} text={"Сохранить изменения"} disabled={!formik.isValid} />
+                    {queryErr && <p className="error-text">{queryErr}</p>}
                 </div>
                 <ImageBlock image={formik.values.image ? formik.values.image : image} />
             </div>

@@ -1,16 +1,18 @@
 import { useFormik } from "formik"
 import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 import Input from "../../ui/input/Input"
 import Button from "../../ui/button/Button"
+import { useTask } from "../../store/task"
+import { useCompany } from "../../store/company"
+import { postNewTask } from "../../api/task"
 
 import plusIcon from "../../assets/profile/plusIcon.svg"
 import plusIconGreen from "../../assets/task/plusIconGreen.svg"
 import deleteIcon from "../../assets/companyProfile/deleteIcon.svg"
 
 import styles from "./CreateTaskPage.module.css"
-import { useState } from "react"
-import { useTask } from "../../store/task"
 
 const ListInp = ({ arr, setNewArr, item }) => {
 
@@ -115,13 +117,41 @@ const TasksWrap = ({ tehno, setTehno }) => {
 
 const CreateTaskPage = () => {
 
+    const companyId = localStorage.getItem("companyId")
+
     const [tehno, setTehno] = useState([])
     const [steps, setSteps] = useState([])
     const [links, setLinks] = useState([])
 
+    const companies = useCompany(state => state.companies)
+    const fetchGetCompany = useCompany(state => state.fetchGetCompany)
+    const getCompanyStatus = useCompany(state => state.getCompanyStatus)
+    const getCompanyErr = useCompany(state => state.getCompanyErr)
+
+    const tasks = useTask(state => state.tasks)
+    const setTasks = useTask(state => state.setTasks)
+
+    const [queryErr, setQueryErr] = useState(getCompanyErr)
+
     const navigate = useNavigate()
 
-    const fetchPostTask = useTask(state => state.fetchPostTask)
+    useEffect(() => {
+        fetchGetCompany()
+    }, [])
+
+    useEffect(() => {
+        if (getCompanyStatus === "fulfilled") {
+            const company = companies?.find((item) => item.id === companyId)
+            if (!company) {
+                setQueryErr("Ошибка сервера")
+            }
+
+            const tasksServer = company.tasks
+            setTasks(tasksServer)
+        }
+
+    }, [companies, getCompanyStatus])
+
 
     const formik = useFormik({
         initialValues: {
@@ -130,9 +160,10 @@ const CreateTaskPage = () => {
             done_desc: "",
             dedline: ""
         },
-        onSubmit: async (values, { resetForm }) => {
+        onSubmit: (values) => {
             const obj = {
                 ...values,
+                id: String(Date.now()),
                 tegnologies: tehno,
                 steps: steps.map((item) => ({
                     is_done: false,
@@ -142,15 +173,22 @@ const CreateTaskPage = () => {
                 status: "open"
             };
 
-            try {
-                await fetchPostTask(obj);
-                // можно показать сообщение об успехе
-                navigate("/profile-company")
-                resetForm(); // очищает форму
-            } catch (error) {
-                console.error("Ошибка при отправке задачи:", error);
-                alert("Произошла ошибка при отправке задачи.");
+            const queryObj = {
+                tasks: [
+                    ...tasks,
+                    obj
+                ]
             }
+
+            postNewTask(queryObj).then((res) => {
+                if (res.status === 200) {
+                    navigate("/super-profile")
+                }
+            }).catch((err) => {
+                setQueryErr(err.message)
+            })
+
+
         }
     })
 
@@ -170,7 +208,7 @@ const CreateTaskPage = () => {
                     <Input inpTitle={"Описание к сдаче задачи:"} placeholder={"Описание к сдаче"} name="done_desc" value={formik.values.done_desc} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                     <Input inpTitle={"Срок сдачи задачи:"} placeholder={"00.00.0000"} name="dedline" value={formik.values.dedline} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                     <Button text={"Создать задание"} type="submit" onClick={formik.handleSubmit} />
-
+                    {queryErr && <p className="error-text">{queryErr}</p>}
                 </div>
 
             </div>

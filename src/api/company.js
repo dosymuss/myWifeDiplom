@@ -1,11 +1,13 @@
 import { mainInstance } from ".";
 
-
-export const getCompanyInfo = async () => {
+export const getCompanies = async () => {
     try {
-        const res = await mainInstance.get("/company/")
-        return res.data
+        const res = await mainInstance.get("");
+        return res.data;
     } catch (error) {
-        throw error
+
+        throw new Error(
+            error.response?.data?.message || "Ошибка сервера"
+        );
     }
-}
+};
