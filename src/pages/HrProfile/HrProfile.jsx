@@ -32,7 +32,7 @@ const ProfileLinks = () => {
         {
             img: internIcon,
             text: "Список стажеров",
-            link: "#"
+            link: "/intern-list"
         },
         {
             img: plusIcon,
@@ -42,7 +42,7 @@ const ProfileLinks = () => {
         {
             img: tasksIcon,
             text: "Все задания",
-            link: "#"
+            link: "/task-list"
         }
     ]
     return (

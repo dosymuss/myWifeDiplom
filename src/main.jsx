@@ -21,6 +21,7 @@ import CreateWorkersProfile from './pages/CreateWorkersProfile/CreateWorkersProf
 import InternSuperSign from './pages/InternSuperSign/InternSuperSign.jsx'
 import SuperProfile from './pages/superProfile/SuperProfile.jsx'
 import EditSuper from './pages/EditSuper/EditSuper.jsx'
+import EditTaskPage from './pages/EditTaskPage/EditTaskPage.jsx'
 
 
 
@@ -97,10 +98,15 @@ const router = createBrowserRouter([
         path: "/super-profile",
         element: <SuperProfile />
       },
-       {
+      {
         path: "/edit-super",
         element: <EditSuper />
       },
+      {
+        path: "/edit-task/:id",
+        element: <EditTaskPage />
+      },
+
     ]
   }
 ])

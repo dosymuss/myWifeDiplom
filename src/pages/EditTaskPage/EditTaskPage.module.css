@@ -1,0 +1,172 @@
+.titleWrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    & p {
+        font-weight: 600;
+        font-size: 18px;
+        color: #000;
+        margin-bottom: 8px;
+    }
+
+    & button {
+        border-radius: 5px;
+        width: 40px;
+        height: 30px;
+        background: var(--green60);
+
+        & img {
+            width: 20px;
+        }
+    }
+}
+
+.listInpWrap {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.listInp {
+    width: 100%;
+    border: 2px solid var(--green40);
+    border-radius: 8px;
+    height: 45px;
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & input {
+        height: 100%;
+        width: 100%;
+        font-weight: 400;
+        font-size: 16px;
+        outline: none;
+    }
+
+    & button {
+        width: 45px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        opacity: 0;
+        transition: 1s ease;
+    }
+}
+
+.listInp:hover {
+    & button {
+        opacity: 1;
+    }
+}
+
+.main {
+    position: relative;
+}
+
+.leftWrap {
+    width: calc(100vw - 200px - 800px);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.rightWrap {
+    position: sticky;
+    top: 40px;
+    height: min-content;
+    width: calc(100vw - 200px - 900px);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mainInpsWrap {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tagsWrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.tags {
+    background: var(--green20);
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: 600;
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tags:hover::before {
+    content: 'x';
+    position: absolute;
+    left: 0;
+    right: 0;
+    color: #000;
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.tags:hover {
+    color: transparent;
+    /* скрываем исходный текст */
+}
+
+
+.tagInp {
+    & p {
+        font-weight: 600;
+        font-size: 18px;
+        color: #000;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+}
+
+
+.tagAddInp {
+    width: 100%;
+    border: 2px solid var(--green40);
+    border-radius: 8px;
+    height: 45px;
+    padding-inline: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+
+    & input {
+        width: 100%;
+        height: 45px;
+        font-weight: 400;
+        font-size: 16px;
+        outline: none;
+    }
+
+    & button {
+        transition: opacity 1s ease;
+        background-color: transparent;
+        opacity: 0;
+    }
+}
+
+.tagAddInp:hover {
+    & button {
+        opacity: 1;
+    }
+}

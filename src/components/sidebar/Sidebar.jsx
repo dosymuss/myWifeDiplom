@@ -8,6 +8,7 @@ import SearchIcon from "../../assets/sidebar/SearchIcon"
 import Logout from "../../assets/sidebar/Logout"
 import StatisticsIcon from "../../assets/sidebar/Statistics"
 import ListIcon from "../../assets/sidebar/ListIcon"
+import UsersIcon from "../../assets/sidebar/UsersIcon"
 
 import styles from "./Sidebar.module.css"
 
@@ -56,7 +57,12 @@ const Sidebar = () => {
                     text: "Задания",
                     path: "/task-list"
                 },
-                
+                {
+                    img: <UsersIcon />,
+                    text: "Стажеры",
+                    path: "/intern-list"
+                },
+
                 // {
                 //     img: <ProfileIcon />,
                 //     text: "Профиль",

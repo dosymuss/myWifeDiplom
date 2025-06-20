@@ -1,5 +1,5 @@
 import { useFormik } from "formik"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 import Input from "../../ui/input/Input"
@@ -12,7 +12,7 @@ import plusIcon from "../../assets/profile/plusIcon.svg"
 import plusIconGreen from "../../assets/task/plusIconGreen.svg"
 import deleteIcon from "../../assets/companyProfile/deleteIcon.svg"
 
-import styles from "./CreateTaskPage.module.css"
+import styles from "./EditTaskPage.module.css"
 
 const ListInp = ({ arr, setNewArr, item }) => {
 
@@ -115,7 +115,9 @@ const TasksWrap = ({ tehno, setTehno }) => {
     )
 }
 
-const CreateTaskPage = () => {
+const EditTaskPage = () => {
+
+    const { id } = useParams()
 
     const companyId = localStorage.getItem("companyId")
 
@@ -127,6 +129,7 @@ const CreateTaskPage = () => {
     const fetchGetCompany = useCompany(state => state.fetchGetCompany)
     const getCompanyStatus = useCompany(state => state.getCompanyStatus)
     const getCompanyErr = useCompany(state => state.getCompanyErr)
+    const updateTask = useCompany(state => state.updateTask)
 
     const tasks = useTask(state => state.tasks)
     const setTasks = useTask(state => state.setTasks)
@@ -149,6 +152,26 @@ const CreateTaskPage = () => {
             const tasksServer = company.tasks
             setTasks(tasksServer)
         }
+        if (id) {
+            const taskToEdit = tasks.find(task => task.id === id);
+            if (taskToEdit) {
+                formik.setValues({
+                    name: taskToEdit.name,
+                    desc: taskToEdit.desc,
+                    done_desc: taskToEdit.done_desc,
+                    dedline: taskToEdit.dedline,
+                });
+                setTehno(taskToEdit.tegnologies || []);
+                setSteps((taskToEdit.steps || []).map(step => ({
+                    id: Date.now() + Math.random(),
+                    value: step.step_text
+                })));
+                setLinks((taskToEdit.links || []).map(link => ({
+                    id: Date.now() + Math.random(),
+                    value: link
+                })));
+            }
+        }
     }, [companies, getCompanyStatus])
 
     const formik = useFormik({
@@ -159,9 +182,9 @@ const CreateTaskPage = () => {
             dedline: ""
         },
         onSubmit: (values) => {
-            const obj = {
+            const newTaskObj = {
                 ...values,
-                id: String(Date.now()),
+                id: id,
                 tegnologies: tehno,
                 steps: steps.map((item) => ({
                     is_done: false,
@@ -171,25 +194,27 @@ const CreateTaskPage = () => {
                 status: "open",
                 departament: departament
             };
+
             const queryObj = {
-                tasks: [
-                    ...tasks,
-                    obj
-                ]
-            }
-            postNewTask(queryObj).then((res) => {
-                if (res.status === 200) {
-                    navigate("/super-profile")
+                tasks: tasks.map(task => task.id === id ? newTaskObj : task)
+            };
+
+            const promise = updateTask(newTaskObj)
+
+
+            promise.then((res) => {
+                if (res.status === 200 || res.status === 201) {
+                    navigate("/super-profile");
                 }
             }).catch((err) => {
-                setQueryErr(err.message)
-            })
+                setQueryErr(err.message);
+            });
         }
     })
 
     return (
         <div className={styles.main}>
-            <h2>Создание нового задания</h2>
+            <h2>Редактирование задания</h2>
             <div className={styles.mainInpsWrap}>
                 <div className={styles.leftWrap}>
                     <Input inpTitle={"Название задачи:"} placeholder={"Название задачи"} name="name" value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur} />
@@ -212,4 +237,4 @@ const CreateTaskPage = () => {
     )
 }
 
-export default CreateTaskPage
+export default EditTaskPage

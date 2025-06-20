@@ -6,12 +6,8 @@ import styles from "./TaskList.module.css"
 const TaskList = () => {
     return (
         <div>
-            <h2 className={styles.mainTitle}>Список стажеров компании</h2>
-            <SearchInp />
-            <div className={styles.tableWrap}>
-                <p>Задача: Верстка проекта</p>
+            <h2 className={styles.mainTitle}>Список заданий компании</h2>
                 <TaskTable />
-            </div>
         </div>
     )
 }

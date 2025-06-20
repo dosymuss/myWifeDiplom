@@ -33,15 +33,7 @@ const renderCustomizedLabel = ({
     );
 };
 
-const TasksGraph = () => {
-
-    const { statistic } = useHr(state => state.hrInfo)
-
-    const data = [
-        { name: 'Group A', value: statistic?.tasksCompleted },
-        { name: 'Group B', value: statistic?.openTasks },
-    ];
-
+const TasksGraph = ({ data }) => {
 
     return (
 

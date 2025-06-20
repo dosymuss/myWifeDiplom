@@ -23,6 +23,11 @@
     border-collapse: collapse;
 }
 
+.nameLink {
+    text-decoration: underline;
+    color: var(--black);
+}
+
 th,
 td {
     padding: 12px;
@@ -64,4 +69,14 @@ th {
         width: 75px;
         height: 43px;
     }
+}
+
+.internAction button:nth-child(3) {
+    background: var(--green100);
+    border-radius: 10px;
+    width: auto;
+    padding: 0 10px;
+    height: 43px;
+    color: var(--white);
+    font-weight: 600;
 }

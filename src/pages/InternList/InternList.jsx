@@ -7,11 +7,7 @@ const InternList = () => {
     return (
         <div>
             <h2 className={styles.mainTitle}>Список стажеров компании</h2>
-            <SearchInp />
-            <div className={styles.tableWrap}>
-                <p>Стажер: Бакытова Нуржан</p>
-                <InternTable />
-            </div>
+            <InternTable />
         </div>
     )
 }

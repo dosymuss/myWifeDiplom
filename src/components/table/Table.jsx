@@ -5,58 +5,17 @@ import styles from './Table.module.css';
 
 
 
-const Table = ({ tasks, time, style, desc }) => {
+const Table = ({ tasks, time, style, desc, workTask }) => {
 
-    // const tasks = [
-    //     {
-    //         name: 'Верстка проекта тест...',
-    //         deadline: 'сегодня',
-    //         progress: '70%',
-    //         time: "2ч 45мин",
-    //         status: 'Открытый',
-    //         desc: "Сверстай блок и модалку ..."
-    //     },
-    //     {
-    //         name: 'Верстка проекта тест...',
-    //         deadline: 'сегодня',
-    //         progress: '70%',
-    //         time: "2ч 45мин",
-    //         status: 'Открытый',
-    //         desc: "Сверстай блок и модалку ..."
-    //     },
-    //     {
-    //         name: 'Верстка проекта тест...',
-    //         deadline: 'сегодня',
-    //         progress: '70%',
-    //         time: "2ч 45мин",
-    //         status: 'Открытый',
-    //         desc: "Сверстай блок и модалку ..."
-    //     },
-    //     {
-    //         name: 'Верстка проекта тест...',
-    //         deadline: 'сегодня',
-    //         progress: '70%',
-    //         time: "2ч 45мин",
-    //         status: 'Открытый',
-    //         desc: "Сверстай блок и модалку ..."
-    //     },
-    //     {
-    //         name: 'Верстка проекта тест...',
-    //         deadline: 'сегодня',
-    //         progress: '70%',
-    //         time: "2ч 45мин",
-    //         status: 'Открытый',
-    //         desc: "Сверстай блок и модалку ..."
-    //     },
-    //     {
-    //         name: 'Верстка проекта тест...',
-    //         deadline: 'сегодня',
-    //         progress: '70%',
-    //         time: "2ч 45мин",
-    //         status: 'Открытый',
-    //         desc: "Сверстай блок и модалку ..."
-    //     },
-    // ]
+    const calculateProgress = (steps) => {
+        if (!steps || steps.length === 0) return 0;
+
+        const completedSteps = steps.filter(step => step.is_done).length;
+        const totalSteps = steps.length;
+
+        // Вычисляем процент выполнения
+        return (completedSteps / totalSteps) * 100;
+    };
 
     return (
         <div className={styles.container} style={style}>
@@ -66,7 +25,7 @@ const Table = ({ tasks, time, style, desc }) => {
                         <th>Название задачи</th>
                         <th>Срок сдачи</th>
                         {time ?
-                            <th>Время</th>
+                            <th>Оценка</th>
                             :
                             <th>Прогресс</th>
                         }
@@ -77,28 +36,34 @@ const Table = ({ tasks, time, style, desc }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks?.map(task => (
-                        <tr key={task.id}>
-                            <Link className={styles.link} to={`/task/${task.id}`}>
-                                <td>{task.name}</td>
-                            </Link>
-                            <td>{task.dedline}</td>
-                            {
-                                time ?
-                                    <td>{task.time}</td>
-                                    :
-                                    <td>{task.progress}%</td>
+                    {tasks?.map(task => {
 
-                            }
-                            <td>
-                                <button className={styles.statusButton}>{task.status}</button>
-                            </td>
-                            {desc &&
-                                <td>{task.desc}</td>
-                            }
-                        </tr>
 
-                    ))}
+
+                        const percent = calculateProgress(task?.steps)
+
+                        return (
+                            <tr key={task.id}>
+                                <Link className={styles.link} to={`/task/${task.id}`}>
+                                    <td style={{ color: workTask && workTask?.id === task.id ? "var(--green80)" : "var(--black)" }}>{task.name}</td>
+                                </Link>
+                                <td>{task.dedline}</td>
+                                {
+                                    time ?
+                                        <td>{task?.mark ? task?.mark : 0}</td>
+                                        :
+                                        <td>{percent ? percent : 0}%</td>
+
+                                }
+                                <td>
+                                    <button style={{ backgroundColor: task?.status === "close" ? "var(--green60)" : "" }} className={styles.statusButton}>{task.status}</button>
+                                </td>
+                                {desc &&
+                                    <td>{task.desc}</td>
+                                }
+                            </tr>
+                        )
+                    })}
                 </tbody>
             </table>
         </div>

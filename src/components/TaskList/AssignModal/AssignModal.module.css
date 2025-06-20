@@ -1,0 +1,70 @@
+.dialog {
+    padding: 0;
+    border: none;
+    background: transparent;
+    width: 100%;
+    max-width: 420px;
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.modalContent {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.modalTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.internList {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 300px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.internItem {
+    padding: 10px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+    color: white;
+}
+
+.internItem:hover {
+    background-color: #e0e0e0;
+    color: black;
+}
+
+.closeBtn {
+    align-self: center;
+    background-color: #d33;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}

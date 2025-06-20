@@ -33,6 +33,12 @@
           "name": "Алмазбеков Дастан Алмазбекович",
           "birthday": "14.05.2003",
           "image": "https://i.pinimg.com/736x/41/be/77/41be776eb3651a0607d9e5bdc3c7c8e5.jpg"
+        },
+        {
+          "id": "1750338011735",
+          "email": "test2@gmail.com",
+          "code": "343790",
+          "departament": "ОАП "
         }
       ],
       "interns": [
@@ -41,8 +47,33 @@
           "email": "test@gmail.com",
           "code": "644462",
           "departament": "ОРПО",
-          "tasks": [],
+          "tasks": [
+            {
+              "id": "1750158997999",
+              "url": "yghujikolp",
+              "mark": "5",
+              "status": "close"
+            },
+            {
+              "id": "1750170568468",
+              "url": "",
+              "mark": "4",
+              "status": "open"
+            },
+            {
+              "id": "1750354716856",
+              "url": "",
+              "mark": "3",
+              "status": "open"
+            }
+          ],
           "progress": {},
+          "workTask": {
+            "id": "1750170568468",
+            "url": "",
+            "mark": null,
+            "status": "open"
+          },
           "recomeLetter": "",
           "name": "hyiujik",
           "birthday": "gyhujk",
@@ -51,44 +82,76 @@
       ],
       "tasks": [
         {
-          "name": "endTest",
-          "desc": "пнгеквчыячеапнрг8ш9щ",
-          "done_desc": "пнргошлд",
-          "dedline": "01.06.25",
-          "id": "1749417708355",
+          "name": "пельмени",
+          "desc": "игргтоьлбдю.",
+          "done_desc": "нпргошлщ",
+          "dedline": "пнртоьлбдю",
+          "id": "1750158997999",
           "tegnologies": [
-            "нпргошлд"
+            "СЫЫ"
           ],
           "steps": [
             {
-              "is_done": false,
-              "step_text": "еапнргошлщд"
+              "is_done": true,
+              "step_text": "рниголшщдзж"
             }
           ],
           "links": [
-            "еапнргошлщдзж"
+            "ипртоьлбдюж",
+            "рнгошлщдзж"
           ],
-          "status": "open"
+          "status": "close",
+          "departament": "ОРПО",
+          "url": "tgfyhujikol",
+          "whoDone": "1749416091423",
+          "mark": ""
         },
         {
-          "name": "gyuhujik",
-          "desc": "bgyuhujkl",
-          "done_desc": "gyhujikol",
+          "name": "чукча",
+          "desc": "uijkol",
+          "done_desc": "После выполнения задания форма должна валидировать данные, отправлять их на сервер и отображать соответствующее сообщение пользователю. Код должен быть чистым и хорошо структурированным.",
           "dedline": "01.06.25",
-          "id": "1749417803677",
+          "id": "1750170568468",
           "tegnologies": [
-            "hyujik"
+            "JS"
           ],
           "steps": [
             {
               "is_done": false,
-              "step_text": "gyhujikol"
+              "step_text": "ijokolp;"
             }
           ],
           "links": [
-            "hyujikolp;"
+            "ujikolp;["
           ],
-          "status": "open"
+          "status": "open",
+          "departament": "ОРПО"
+        },
+        {
+          "name": "React",
+          "desc": "testtesttestttesttestetse",
+          "done_desc": "После выполнения задания форма должна валидировать данные, отправлять их на сервер и отображать соответствующее сообщение пользователю. Код должен быть чистым и хорошо структурированным.",
+          "dedline": "01.06.25",
+          "id": "1750354716856",
+          "tegnologies": [
+            "HTML"
+          ],
+          "steps": [
+            {
+              "is_done": true,
+              "step_text": "создать документ"
+            },
+            {
+              "is_done": true,
+              "step_text": "создать файлы"
+            }
+          ],
+          "links": [
+            "пегнрошлщд",
+            "еапнргошлщздж"
+          ],
+          "status": "open",
+          "departament": "ОРПО"
         }
       ]
     }

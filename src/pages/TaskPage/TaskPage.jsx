@@ -1,12 +1,13 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import ProgressBlock from "../../components/progressBlock/ProgressBlock"
 import TaskSteps from "../../components/task/taskSteps/TaskSteps"
 import Button from "../../ui/button/Button"
 import Input from "../../ui/input/Input"
 import styles from "./TaskPage.module.css"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useTask } from "../../store/task"
 import { useUser } from "../../store"
+import { useCompany } from "../../store/company"
 
 
 const Tags = ({ text }) => {
@@ -17,21 +18,100 @@ const Tags = ({ text }) => {
 
 const TaskPage = () => {
 
+    const [url, setUrl] = useState("")
+
     const { id } = useParams()
+    const companies = useCompany(state => state.companies);
+    const fetchGetCompany = useCompany(state => state.fetchGetCompany);
+    const updateTask = useCompany(state => state.updateTask);
+    const updateCompanyInterns = useCompany(state => state.updateCompanyInterns);
 
-    const fetchGetTaskInfo = useTask(state => state.fetchGetTaskInfo)
-    const task = useTask(state => state.task)
-    const getProfile = useUser(state => state.getProfile)
+    const navigate = useNavigate()
+
+    const getTasksByDepartment = (companies, department) => {
+        const tasks = [];
+
+        companies.forEach((company) => {
+            const allPeople = [...(company.interns || []), ...(company.supervisor || [])];
+
+            const hasDepartmentMatch = allPeople.some(person => person.departament === department);
+
+            if (hasDepartmentMatch && company.tasks) {
+                tasks.push(...company.tasks);
+            }
+        });
+
+        return tasks;
+    };
+
+    const department = localStorage.getItem("departament")
+    const companyRole = localStorage.getItem("companyRole")
+    const clientId = localStorage.getItem("workerId")
+
+    const my_profile = companies
+        ?.flatMap(company => company.interns || [])
+        ?.find(intern => intern?.id === clientId)
+
+
+    const filteredTasks = getTasksByDepartment(companies, department);
+
+
+    const task = filteredTasks?.find((item) => item.id === id)
 
     useEffect(() => {
-        fetchGetTaskInfo(id)
-    }, [id])
+        fetchGetCompany()
+    }, [])
 
-    useEffect(() => {
-        getProfile()
-    }, [id])
+    const handleEnd = async () => {
+        if (!url) return; // Убедимся, что ссылка введена
 
-    const links = ["https://redux-toolkit.js.org/", "https://redux-toolkit.js.org/", "https://redux-toolkit.js.org/"]
+        // Обновляем задачу у интерна
+        const updatedIntern = {
+            ...my_profile, // Копируем профиль интерна
+            tasks: my_profile.tasks.map(task => {
+                if (task.id === my_profile?.workTask?.id) {
+                    // Обновляем задачу с нужным id
+                    return {
+                        ...task,
+                        url: url, // Добавляем ссылку
+                        status: "close" // Изменяем статус на "close"
+                    };
+                }
+                return task; // Оставляем другие задачи без изменений
+            }),
+            workTask: null // Очищаем workTask, так как задача завершена
+        };
+
+        // Обновляем задачи в компании (глобальные задачи)
+        const newTask = {
+            ...task,
+            url,
+            status: "close",
+            whoDone: clientId
+        }
+
+        // Сохраняем обновления в хранилище (обновляем профиль интерна и задачи компании)
+
+        // Отправляем обновления на сервер
+        try {
+            // Пример запроса для обновления задачи на сервере
+            await updateTask(newTask);
+
+            // Обновляем профиль интерна на сервере
+            await updateCompanyInterns(my_profile.id, updatedIntern);
+
+            navigate("/")
+
+            console.log("Данные успешно обновлены на сервере");
+        } catch (err) {
+            console.error("Ошибка при обновлении данных на сервере:", err);
+        }
+    };
+
+
+    // Проверяем наличие задачи
+    if (!task) return <p>Задача не найдена</p>;
+
     return (
         <div className={styles.main}>
             <div className={styles.mainContentWrap}>
@@ -51,7 +131,7 @@ const TaskPage = () => {
                         <p>{task?.desc}</p>
                     </div>
 
-                    <TaskSteps steps={task?.steps} />
+                    <TaskSteps steps={task?.steps} task={task} />
 
                     <div>
                         <h3>Документация к  задаче:</h3>
@@ -70,8 +150,8 @@ const TaskPage = () => {
                         <label className={styles.labelWrap}>
                             <span>Ссылка на репозиторий:</span>
                             <div className={styles.repoInpWrap}>
-                                <Input placeholder={"https://..."} style={{ width: "450px" }} />
-                                <Button text={"Завершить"} style={{ width: "151px" }} />
+                                <Input placeholder={"https://..."} style={{ width: "450px" }} value={url} onChange={(e) => setUrl(e.target.value)} />
+                                <Button text={"Завершить"} style={{ width: "151px" }} disabled={!url} onClick={handleEnd} />
                             </div>
                         </label>
 
@@ -82,9 +162,12 @@ const TaskPage = () => {
 
 
             </div>
-            <div className={styles.progtressBlock}>
-                <ProgressBlock />
-            </div>
+            {
+                companyRole === "intern" &&
+                <div className={styles.progtressBlock}>
+                    <ProgressBlock />
+                </div>
+            }
 
         </div>
 

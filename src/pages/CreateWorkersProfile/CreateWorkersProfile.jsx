@@ -77,10 +77,11 @@ const CreateWorkersProfile = () => {
             code: randomCode,
             departament: departamentLocal,
             tasks: [],
+            workTask: [],
             progress: {
 
             },
-            recomeLetter:""
+            recomeLetter: ""
           },
         ],
       };

@@ -1,10 +1,7 @@
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import styles from './WorkerGraph.module.css';
 
-const data = [
-    { name: 'Group A', value: 700 },
-    { name: 'Group B', value: 300 },
-];
+
 
 const COLORS = ['#31572c', '#FECD2F'];
 
@@ -31,7 +28,7 @@ const renderCustomizedLabel = ({
     );
 };
 
-const WorkersGraph = () => {
+const WorkersGraph = ({ data }) => {
     return (
 
         <div className={styles.mainGraph}>

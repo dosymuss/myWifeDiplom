@@ -5,88 +5,81 @@ import deleteIcon from "../../../assets/internList/deleteIcon.svg"
 import usersIcon from "../../../assets/taskList/usersIcon.svg"
 
 import styles from './TaskTable.module.css';
+import { useCompany } from "../../../store/company";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import AssignModal from "../AssignModal/AssignModal";
 
 
 
-const TaskAction = () => {
+const TaskAction = ({ taskId }) => {
+    const deleteTask = useCompany(state => state.deleteTask);
+    const companies = useCompany(state => state.companies);
+    const assignTaskToIntern = useCompany(state => state.assignTaskToIntern); // ↓ сделаем
 
-    const buttons = [
-        {
-            img: deleteIcon
-        },
-        {
-            img: editIcon
-        },
-        {
-            img: watchIcon
-        },
-        {
-            img: usersIcon
-        },
-    ]
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const allInterns = companies.flatMap(c => c.interns || []);
+
+    const handleAssign = (intern) => {
+        assignTaskToIntern(intern.id, taskId);
+        setIsModalOpen(false);
+    };
+
+    const navigate = useNavigate()
 
     return (
         <div className={styles.internAction}>
-            {
-                buttons.map((item) => (
-                    <button>
-                        <img src={item.img} alt="" />
-                    </button>
-                ))
-            }
-        </div>
-    )
+            <button onClick={() => deleteTask(taskId)}>
+                <img src={deleteIcon} alt="" />
+            </button>
+            <button onClick={() => navigate(`/edit-task/${taskId}`)}>
+                <img src={editIcon} alt="" />
+            </button>
+            <button onClick={() => setIsModalOpen(true)}>Назначить</button>
 
-}
+            {isModalOpen && (
+                <AssignModal
+                    interns={allInterns}
+                    onClose={() => setIsModalOpen(false)}
+                    onAssign={handleAssign}
+                />
+            )}
+        </div>
+    );
+};
 
 
 
 const TaskTable = ({ style }) => {
 
-    const tasks = [
-        {
-            title: "Верстка проекта лендинга",
-            time: "3д",
-            description: "Сверстай главный экран и футер",
-        },
-        {
-            title: "Разработка панели администратора",
-            time: "5д",
-            description: "Сделай layout, навигацию и страницу логина",
-        },
-        {
-            title: "Интеграция с API",
-            time: "2д",
-            description: "Подключи и протестируй авторизацию через API",
-        },
-        {
-            title: "Адаптивная верстка",
-            time: "4д",
-            description: "Сделай адаптацию под планшеты и мобильные устройства",
-        },
-        {
-            title: "Создание модальных окон",
-            time: "1д",
-            description: "Сделай модалку для подтверждения действия",
-        },
-        {
-            title: "Настройка маршрутизации",
-            time: "2д",
-            description: "Добавь маршруты и защити приватные страницы",
-        },
-        {
-            title: "Оптимизация изображений",
-            time: "1д",
-            description: "Добавь lazy loading и конвертацию в WebP",
-        },
-        {
-            title: "Стилизация компонентов",
-            time: "3д",
-            description: "Применить дизайн систему ко всем компонентам",
-        }
-    ];
+    const companies = useCompany(state => state.companies);
+    const fetchGetCompany = useCompany(state => state.fetchGetCompany);
 
+    const getTasksByDepartment = (companies, department) => {
+        const tasks = [];
+
+        companies.forEach((company) => {
+            const allPeople = [...(company.interns || []), ...(company.supervisor || [])];
+
+            const hasDepartmentMatch = allPeople.some(person => person.departament === department);
+
+            if (hasDepartmentMatch && company.tasks) {
+                tasks.push(...company.tasks);
+            }
+        });
+
+        return tasks;
+    };
+
+    const department = localStorage.getItem("departament")
+    const filteredTasks = getTasksByDepartment(companies, department);
+
+    useEffect(() => {
+        fetchGetCompany()
+    }, [])
+
+    const role = localStorage.getItem("companyRole")
 
 
     return (
@@ -97,18 +90,29 @@ const TaskTable = ({ style }) => {
                         <th>Название задачи</th>
                         <th>Время</th>
                         <th>Описание задачи</th>
-                        <th>Действия</th>
+                        {
+                            role === "super" &&
+                            <th>Действия</th>
+                        }
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks.map(task => (
-                        <tr key={task.title}>
-                            <td>{task.title}</td>
-                            <td>{task.time}</td>
-                            <td>{task.description}</td>
+                    {filteredTasks?.map(task => (
+                        <tr key={task.id}>
+
                             <td>
-                                <TaskAction />
+                                <Link className={styles.nameLink} to={`/task/${task.id}`}>
+                                    {task.name}
+                                </Link>
                             </td>
+                            <td>{task.dedline}</td>
+                            <td>{task.desc}</td>
+                            {
+                                role === "super" &&
+                                <td>
+                                    <TaskAction taskId={task.id} />
+                                </td>
+                            }
                         </tr>
                     ))}
                 </tbody>
