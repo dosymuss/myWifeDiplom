@@ -59,10 +59,10 @@ const SignInForm = () => {
 
   return (
     <div className={styles.signInWrap}>
-      <Link to="/worker-sign" className={styles.internLink}>Are you intern or supervisor?</Link>
+      <Link to="/worker-sign" className={styles.internLink}>Вы стажер или ментор?</Link>
       <div className={styles.signInContent}>
-        <AuthTitle title={"Sign in"} />
-        <Input placeholder={"Email"} title={"Your email"}
+        <AuthTitle title={"Войти"} />
+        <Input placeholder={"Почта"} title={"Ваша почта"}
           name="email"
           value={formik.values.email}
           onChange={formik.handleChange}
@@ -70,9 +70,9 @@ const SignInForm = () => {
           err={formik.errors.email}
         />
         <Input
-          placeholder={"Password"}
-          title={"Your password"}
-          password={true}
+          placeholder={"Пароль"}
+          title={"Ваш пароль"}
+          // password={true}
           login={true}
           name="password"
           value={formik.values.password}
@@ -82,7 +82,7 @@ const SignInForm = () => {
         />
         <Button disabled={!formik.isValid} buttonText={"Sign in"} onClick={formik.handleSubmit} />
         {queryErr && <p className={styles.errText}>{queryErr}</p>}
-        <p>You don't have an account yet, <Link to="/register">register here</Link></p>
+        <p>У вас ещё нет аккаунта? <Link to="/register">Регистрация</Link></p>
       </div>
     </div>
   )

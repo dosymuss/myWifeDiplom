@@ -5,7 +5,7 @@ import styles from './Table.module.css';
 
 
 
-const Table = ({ tasks, time, style, desc, workTask }) => {
+const Table = ({ tasks, time, style, desc, workTask, clickable = false }) => {
 
     const calculateProgress = (steps) => {
         if (!steps || steps.length === 0) return 0;
@@ -44,9 +44,13 @@ const Table = ({ tasks, time, style, desc, workTask }) => {
 
                         return (
                             <tr key={task.id}>
-                                <Link className={styles.link} to={`/task/${task.id}`}>
-                                    <td style={{ color: workTask && workTask?.id === task.id ? "var(--green80)" : "var(--black)" }}>{task.name}</td>
-                                </Link>
+                                {
+                                    clickable ?
+                                        <Link className={styles.link} to={`/task/${task.id}`}>
+                                            <td style={{ color: workTask && workTask?.id === task.id ? "var(--green80)" : "var(--black)" }}>{task.name}</td>
+                                        </Link> :
+                                        <td className={styles.name} style={{ color: workTask && workTask?.id === task.id ? "var(--green80)" : "var(--black)" }}>{task.name}</td>
+                                }
                                 <td>{task.dedline}</td>
                                 {
                                     time ?

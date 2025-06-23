@@ -80,7 +80,7 @@ const HomePage = () => {
             <div>
                 <div>
                     <h3 className={styles.tableTitle}>Мои задачи</h3>
-                    <Table tasks={fullTasks} workTask={workTask} />
+                    <Table clickable={true} tasks={fullTasks} workTask={workTask} />
                 </div>
                 <div className={styles.secondTableWrap}>
                     <h3 className={styles.tableTitle}>История задач</h3>

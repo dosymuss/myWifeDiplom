@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { getCompanies, updateCompanyInterns, updateCompanyTasks } from "../api/company";
+import { getCompanies, updateCompany, updateCompanyInterns, updateCompanyTasks } from "../api/company";
 
 
 
@@ -141,52 +141,48 @@ export const useCompany = create(devtools(
         },
         assignWorkTaskIfEmpty: async (internId) => {
             try {
-                const { companies } = get();
+                const { companies, updateCompanyInterns } = get();
 
+                const companyId = localStorage.getItem("companyId");
+                const company = companies?.find(c => c.id === companyId);
+                if (!company) return;
 
+                const intern = company.interns?.find(i => i.id === internId);
+                if (!intern) return;
 
-                const updatedCompanies = await Promise.all(
-                    companies.map(async (company) => {
-                        const hasIntern = (company.interns || []).some(i => i.id === internId);
+                // Если уже есть workTask — ничего не делаем
+                const hasWorkTask = intern.workTask && Object.keys(intern.workTask).length > 0;
+                if (hasWorkTask) return;
 
-                        if (!hasIntern) return company;
+                // Ищем первую задачу, у которой статус не "close"
+                const firstOpenTask = (intern.tasks || []).find(task => task.status !== 'close');
+                if (!firstOpenTask) return;
 
-                        const updatedInterns = company.interns.map(intern => {
-                            if (intern.id !== internId) return intern;
+                const updatedIntern = {
+                    ...intern,
+                    workTask: firstOpenTask
+                };
 
-                            // Проверяем, если workTask уже есть, не делаем изменений
-                            const hasWorkTask = intern.workTask && Object.keys(intern.workTask).length > 0;
+                // Используем твою новую функцию обновления
+                await updateCompanyInterns(internId, updatedIntern);
 
-                            if (!hasWorkTask) {
-                                // Ищем первую задачу с открытым статусом
-                                const firstOpenTask = (intern.tasks || []).find(task => task.status !== 'close');
-
-                                console.log(firstOpenTask);
-
-
-                                if (firstOpenTask) {
-                                    return {
-                                        ...intern,
-                                        workTask: firstOpenTask
-                                    };
-                                }
-                            }
-
-                            // Если workTask уже назначена или нет открытых задач
-                            return intern;
-                        });
-
-                        await updateCompanyInterns(company.id, updatedInterns);
-                        return { ...company, interns: updatedInterns };
-                    })
+                // Обновим в состоянии
+                const updatedCompanies = companies.map(c =>
+                    c.id === companyId
+                        ? {
+                            ...c,
+                            interns: c.interns.map(i => i.id === internId ? updatedIntern : i)
+                        }
+                        : c
                 );
 
                 set({ companies: updatedCompanies });
 
             } catch (err) {
-                console.error("Ошибка при обновлении workTask:", err);
+                console.error("Ошибка при назначении workTask:", err);
             }
         },
+
 
         updateCompanyInterns: async (internId, updatedIntern) => {
             try {
@@ -198,21 +194,21 @@ export const useCompany = create(devtools(
                 const companyId = localStorage.getItem("companyId")
 
                 // Обновляем интерна в соответствующей компании
-                const updatedCompanies = companies.map(company => {
-                    const updatedInterns = company.interns.map(intern => {
-                        if (intern.id === internId) {
-                            return updatedIntern; // Заменяем интерна на обновленного
-                        }
-                        return intern; // Оставляем других интернов без изменений
-                    });
+                const company = companies?.find(item => item?.id === companyId)
 
-                    return { ...company, interns: updatedInterns };
-                });
 
+                const otherInter = company?.interns?.filter(item => item?.id !== updatedIntern.id)
+
+                const interns = [...otherInter, updatedIntern]
+
+                const queryCompany = {
+                    ...company,
+                    interns: interns
+                }
                 // Сохраняем обновленные данные в хранилище
 
                 // Отправляем обновленные данные на сервер
-                const res = await updateCompanyInterns(companyId, updatedIntern);
+                const res = await updateCompany(companyId, queryCompany);
 
                 console.log("Интерн обновлен на сервере", res);
 

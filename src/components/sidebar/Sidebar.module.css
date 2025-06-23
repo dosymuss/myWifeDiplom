@@ -46,3 +46,15 @@
     left: 40px;
     bottom: 40px;
 }
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+   
+}
+
+.logo h1{
+    color: var(--green100);
+    font-size: 30px;
+}

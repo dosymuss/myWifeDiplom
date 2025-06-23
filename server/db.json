@@ -154,6 +154,159 @@
           "departament": "ОРПО"
         }
       ]
+    },
+    {
+      "id": "03a5",
+      "hr": {
+        "role": "hr",
+        "name": "daekae",
+        "email": "dastaalma1904@gmail.com",
+        "password": "Dastan555666$",
+        "confirm_password": "Dastan555666$"
+      },
+      "supervisor": [],
+      "interns": []
+    },
+    {
+      "id": "1111",
+      "hr": {
+        "role": "hr",
+        "name": "daekae",
+        "email": "test4@gmail.com",
+        "password": "Dastan555666$",
+        "confirm_password": "Dastan555666$"
+      },
+      "supervisor": [
+        {
+          "id": "1750610668543",
+          "email": "TEST@gmail.com",
+          "code": "111111",
+          "departament": "TEST"
+        }
+      ],
+      "interns": [
+        {
+          "id": "1750611439340",
+          "email": "TEST1@gmail.com",
+          "code": "222222",
+          "departament": "TEST",
+          "tasks": [
+            {
+              "id": "1750611296385",
+              "url": "drtxdcfvgbhnujm",
+              "mark": "5",
+              "status": "close"
+            },
+            {
+              "id": "1750618544851",
+              "url": "fr6tgyhujikolp;",
+              "mark": "5",
+              "status": "close"
+            },
+            {
+              "id": "1750619199494",
+              "url": "FRTGYUHJIKOL",
+              "mark": "3",
+              "status": "close"
+            }
+          ],
+          "workTask": null,
+          "progress": {},
+          "recomeLetter": ""
+        }
+      ],
+      "tasks": [
+        {
+          "name": "TEST",
+          "desc": "TEST",
+          "done_desc": "TEST",
+          "dedline": "00.00.0000",
+          "id": "1750611296385",
+          "tegnologies": [
+            "TEST"
+          ],
+          "steps": [
+            {
+              "is_done": true,
+              "step_text": "TEST"
+            }
+          ],
+          "links": [
+            "TEST"
+          ],
+          "status": "close",
+          "departament": "TEST",
+          "url": "drtxdcfvgbhnujm",
+          "whoDone": "1750611439340"
+        },
+        {
+          "name": "TEST2",
+          "desc": "TEST2",
+          "done_desc": "TEST2",
+          "dedline": "11.11.1111",
+          "id": "1750618544851",
+          "tegnologies": [
+            "TEST"
+          ],
+          "steps": [
+            {
+              "is_done": true,
+              "step_text": "TEST2"
+            }
+          ],
+          "links": [
+            "TEST2"
+          ],
+          "status": "close",
+          "departament": "TEST",
+          "url": "tgyhujikol",
+          "whoDone": "1750611439340"
+        },
+        {
+          "name": "TEST3",
+          "desc": "TEST3",
+          "done_desc": "TEST3",
+          "dedline": "22.22.2222",
+          "id": "1750619199494",
+          "tegnologies": [
+            "TEST"
+          ],
+          "steps": [
+            {
+              "is_done": true,
+              "step_text": "TEST3"
+            }
+          ],
+          "links": [
+            "TEST3"
+          ],
+          "status": "close",
+          "departament": "TEST",
+          "url": "FRTGYUHJIKOL",
+          "whoDone": "1750611439340"
+        },
+        {
+          "name": "TEST4",
+          "desc": "TEST4",
+          "done_desc": "TEST",
+          "dedline": "33.33.3333",
+          "id": "1750621216485",
+          "tegnologies": [
+            "TEST"
+          ],
+          "steps": [
+            {
+              "is_done": false,
+              "step_text": "TEST4"
+            }
+          ],
+          "links": [
+            "TEST4"
+          ],
+          "status": "open",
+          "departament": "TEST"
+        }
+      ]
     }
   ]
 }

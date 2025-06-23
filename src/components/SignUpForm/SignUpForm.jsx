@@ -34,7 +34,8 @@ const SignUpForm = () => {
           ...values
         },
         supervisor: [],
-        interns: []
+        interns: [],
+        tasks: []
       }
       register(createCompanyObj).then((res) => {
         console.log(res);
@@ -51,13 +52,13 @@ const SignUpForm = () => {
   return (
     <div className={styles.signInWrap}>
       <div className={styles.signInContent}>
-        <AuthTitle title={"Sign up"} />
+        <AuthTitle title={"Регистрация"} />
         <Input
           name="email"
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder={"Email"} title={"Your email"}
+          placeholder={"Почта"} title={"Ваша почта"}
           err={formik.errors.email} />
 
         <Input
@@ -65,7 +66,7 @@ const SignUpForm = () => {
           value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder={"Name"} title={"Your Name"}
+          placeholder={"Имя"} title={"Ваше имя"}
           err={formik.errors.name} />
 
         <Input
@@ -74,8 +75,8 @@ const SignUpForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
 
-          placeholder={"Password"}
-          title={"Your password"}
+          placeholder={"Пароль"}
+          title={"Ваш пароль"}
           password={true}
           err={formik.errors.password}
         //   password={true}
@@ -87,15 +88,15 @@ const SignUpForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
 
-          placeholder={"Confirm password"}
-          title={"Confirm password"}
+          placeholder={"Повторите пароль"}
+          title={"Повторите пароль"}
           password={true}
           err={formik.errors.confirm_password}
         // login={true}
         />
         <Button disabled={!formik.isValid} onClick={formik.handleSubmit} buttonText={"Sign up"} />
         {queryErr && <p className={styles.errText}>{queryErr}</p>}
-        <p>Do you already have an account? <Link to="/login" >Sign in</Link>  </p>
+        <p>У вас уже есть аккаунт? <Link to="/login" >Войти</Link>  </p>
       </div>
     </div>
   );

@@ -47,6 +47,7 @@ const TaskPage = () => {
     const department = localStorage.getItem("departament")
     const companyRole = localStorage.getItem("companyRole")
     const clientId = localStorage.getItem("workerId")
+    const companyId = localStorage.getItem("companyId")
 
     const my_profile = companies
         ?.flatMap(company => company.interns || [])
@@ -69,7 +70,7 @@ const TaskPage = () => {
         const updatedIntern = {
             ...my_profile, // Копируем профиль интерна
             tasks: my_profile.tasks.map(task => {
-                if (task.id === my_profile?.workTask?.id) {
+                if (task.id === id) {
                     // Обновляем задачу с нужным id
                     return {
                         ...task,
@@ -98,7 +99,7 @@ const TaskPage = () => {
             await updateTask(newTask);
 
             // Обновляем профиль интерна на сервере
-            await updateCompanyInterns(my_profile.id, updatedIntern);
+            await updateCompanyInterns(companyId, updatedIntern);
 
             navigate("/")
 
@@ -147,13 +148,18 @@ const TaskPage = () => {
                         <h3>Сдача задачи:</h3>
                         <p>{task?.done_desc}</p>
 
-                        <label className={styles.labelWrap}>
-                            <span>Ссылка на репозиторий:</span>
-                            <div className={styles.repoInpWrap}>
-                                <Input placeholder={"https://..."} style={{ width: "450px" }} value={url} onChange={(e) => setUrl(e.target.value)} />
-                                <Button text={"Завершить"} style={{ width: "151px" }} disabled={!url} onClick={handleEnd} />
-                            </div>
-                        </label>
+                        {
+                            (companyRole === "intern" || task?.status === "open") &&
+
+                            <label className={styles.labelWrap}>
+                                <span>Ссылка на репозиторий:</span>
+                                <div className={styles.repoInpWrap}>
+                                    <Input placeholder={"https://..."} style={{ width: "450px" }} value={url} onChange={(e) => setUrl(e.target.value)} />
+                                    <Button text={"Завершить"} style={{ width: "151px" }} disabled={!url} onClick={handleEnd} />
+                                </div>
+                            </label>
+                        }
+
 
                     </div>
 

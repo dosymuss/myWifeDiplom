@@ -54,6 +54,10 @@ th {
     background-color: #1f4ac0;
 }
 
-.link{
+.link {
     color: var(--black);
+}
+
+.name {
+    text-align: left;
 }

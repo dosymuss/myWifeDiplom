@@ -2,6 +2,7 @@ import deleteIcon from "../../../assets/internList/deleteIcon.svg"
 import accountIcon from "../../../assets/internList/accountIcon.svg"
 import writeLetterIcon from "../../../assets/internList/writeLetter.svg"
 import allTaskIcon from "../../../assets/internList/allTaskIcon.svg"
+import closeIcon from "../../../assets/modal/xIcon.svg"
 
 import styles from './InternTable.module.css';
 import { useCompany } from "../../../store/company";
@@ -68,7 +69,9 @@ const TasksModal = ({ tasks, onClose, internId }) => {
                         )
                         }
                     </ul>
-                    <button onClick={onClose}>Закрыть</button>
+                    <button className={styles.closeBtn} onClick={onClose}>
+                        <img src={closeIcon} alt="" />
+                    </button>
                 </div>
             </div>
         </dialog>

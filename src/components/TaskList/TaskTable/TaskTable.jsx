@@ -19,7 +19,12 @@ const TaskAction = ({ taskId }) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const allInterns = companies.flatMap(c => c.interns || []);
+    const companyId = localStorage.getItem("companyId")
+
+
+    const findCompany = companies?.find(item => item?.id === companyId)
+
+    const allInterns = findCompany?.interns || [];
 
     const handleAssign = (intern) => {
         assignTaskToIntern(intern.id, taskId);
@@ -29,15 +34,17 @@ const TaskAction = ({ taskId }) => {
     const navigate = useNavigate()
 
     return (
-        <div className={styles.internAction}>
-            <button onClick={() => deleteTask(taskId)}>
-                <img src={deleteIcon} alt="" />
-            </button>
-            <button onClick={() => navigate(`/edit-task/${taskId}`)}>
-                <img src={editIcon} alt="" />
-            </button>
-            <button onClick={() => setIsModalOpen(true)}>Назначить</button>
+        <>
+            <div className={styles.internAction}>
+                <button onClick={() => deleteTask(taskId)}>
+                    <img src={deleteIcon} alt="" />
+                </button>
+                <button onClick={() => navigate(`/edit-task/${taskId}`)}>
+                    <img src={editIcon} alt="" />
+                </button>
+                <button onClick={() => setIsModalOpen(true)}>Назначить</button>
 
+            </div>
             {isModalOpen && (
                 <AssignModal
                     interns={allInterns}
@@ -45,7 +52,7 @@ const TaskAction = ({ taskId }) => {
                     onAssign={handleAssign}
                 />
             )}
-        </div>
+        </>
     );
 };
 

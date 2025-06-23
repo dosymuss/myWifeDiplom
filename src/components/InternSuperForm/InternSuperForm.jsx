@@ -79,7 +79,7 @@ const InternSuperForm = () => {
         <div className={styles.formMain}>
             <div className={styles.formContent}>
                 <AuthTitle title={"Добро пожаловать !"} />
-                <Input title={"Ваш email"} placeholder={"Введите вашу почту"} name="email" value={formik.values.email} err={formik.errors.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                <Input title={"Ваша почта"} placeholder={"Введите вашу почту"} name="email" value={formik.values.email} err={formik.errors.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                 <PinInput value={otp} setValue={setOtp} />
                 <Button disabled={!formik.isValid || !otp} buttonText={"Войти"} type="submit" onClick={formik.handleSubmit} />
                 {queryErr && <p className='error-text'>{queryErr}</p>}

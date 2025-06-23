@@ -18,6 +18,7 @@ const CompanyProfile = () => {
 
     const [openModal, setOpenModal] = useState(false);
     const [taskModal, setTaskModal] = useState(false);
+    const companyId = localStorage.getItem("companyId")
     const companies = useCompany(state => state.companies);
     const fetchGetCompany = useCompany(state => state.fetchGetCompany);
 
@@ -26,10 +27,13 @@ const CompanyProfile = () => {
         let supervisorsCount = 0;
         let internsCount = 0;
 
-        companies.forEach(company => {
-            supervisorsCount += company.supervisor?.length || 0;
-            internsCount += company.interns?.length || 0;
-        });
+        const findCompany = companies?.find(item => item?.id === companyId)
+
+
+
+        supervisorsCount += findCompany?.supervisor?.length || 0;
+        internsCount += findCompany?.interns?.length || 0;
+
 
         return [
             { name: 'Руководители', value: supervisorsCount },
@@ -45,14 +49,19 @@ const CompanyProfile = () => {
         let openTasksCount = 0;
         let closedTasksCount = 0;
 
-        companies.forEach(company => {
-            company.tasks?.forEach(task => {
-                if (task.status === 'open') {
-                    openTasksCount += 1;
-                } else if (task.status === 'closed') {
-                    closedTasksCount += 1;
-                }
-            });
+        const findCompany = companies?.find(item => item?.id === companyId)
+
+
+        console.log(findCompany);
+
+
+
+        findCompany?.tasks?.forEach(task => {
+            if (task.status === 'open') {
+                openTasksCount += 1;
+            } else if (task.status === 'close') {
+                closedTasksCount += 1;
+            }
         });
 
         return [

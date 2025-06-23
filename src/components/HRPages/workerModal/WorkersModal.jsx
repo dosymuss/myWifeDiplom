@@ -5,8 +5,15 @@ import styles from "./WorkersModal.module.css"
 const WorkersModal = ({ companies, onClose, open }) => {
     const modalRef = useRef(null)
 
-    const supervisors = companies.flatMap(company => company.supervisor || []);
-    const interns = companies.flatMap(company => company.interns || []);
+    const companyId = localStorage.getItem("companyId")
+
+
+    const findCompany = companies?.find(item => item?.id === companyId)
+
+
+
+    const supervisors = findCompany?.supervisor || [];
+    const interns = findCompany?.interns || [];
 
 
     useEffect(() => {
@@ -65,7 +72,7 @@ const WorkersModal = ({ companies, onClose, open }) => {
                             <ul>
                                 {supervisors.map((supervisor, index) => (
                                     <li key={index}>
-                                        {supervisor.name} - {supervisor.departament}
+                                        {supervisor.email} - {supervisor.departament}
                                     </li>
                                 ))}
                             </ul>
@@ -75,7 +82,7 @@ const WorkersModal = ({ companies, onClose, open }) => {
                             <ul>
                                 {interns.map((intern, index) => (
                                     <li key={index}>
-                                        {intern.name} - {intern.departament}
+                                        {intern.email} - {intern.departament}
                                     </li>
                                 ))}
                             </ul>

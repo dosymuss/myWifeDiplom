@@ -1,4 +1,8 @@
 import { useEffect, useRef } from 'react'
+
+import closeIcon from "../../../assets/modal/xIcon.svg"
+import ProfileIcon from '../../../assets/sidebar/ProfileIcon'
+
 import styles from "./AssignModal.module.css"
 
 const AssignModal = ({ interns, onClose, onAssign }) => {
@@ -38,19 +42,35 @@ const AssignModal = ({ interns, onClose, onAssign }) => {
             onClick={handleBackdropClick}
         >
             <div className={styles.modalContent}>
+                <button onClick={onClose} className={styles.closeBtn}>
+                    <img src={closeIcon} alt="" />
+                </button>
                 <h3 className={styles.modalTitle}>Выберите стажёра</h3>
                 <div className={styles.internList}>
                     {interns.map(intern => (
-                        <button
-                            key={intern.id}
-                            className={styles.internItem}
-                            onClick={() => onAssign(intern)}
-                        >
-                            {intern.name}
-                        </button>
+                        <div className={styles.internItem}>
+                            <div className={styles.imgEmailWrap}>
+                                {
+                                    intern?.img ?
+                                        <img src={intern?.img} alt="" /> :
+                                        <div className={styles.internSceleton}>
+                                            <ProfileIcon />
+                                        </div>
+                                }
+                                <p>{intern?.email}</p>
+                            </div>
+
+                            <button
+                                key={intern.id}
+                                className={styles.internBtn}
+                                onClick={() => onAssign(intern)}
+                            >
+                                Назначить
+                            </button>
+
+                        </div>
                     ))}
                 </div>
-                <button className={styles.closeBtn} onClick={onClose}>Закрыть</button>
             </div>
         </dialog>
     )

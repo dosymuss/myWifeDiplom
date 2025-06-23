@@ -5,11 +5,16 @@ import styles from "./TaskModal.module.css"
 const TaskModal = ({ companies, onClose, open }) => {
     const modalRef = useRef(null)
 
+    const companyId = localStorage.getItem("companyId")
+
+
+    const findCompany = companies?.find(item => item?.id === companyId)
+
     // Получаем все открытые задачи
-    const openTasks = companies.flatMap(company => company.tasks?.filter(task => task.status === 'open') || []);
+    const openTasks = findCompany?.tasks?.filter(task => task.status === 'open') || [];
 
     // Получаем все закрытые задачи
-    const closedTasks = companies.flatMap(company => company.tasks?.filter(task => task.status === 'closed') || []);
+    const closedTasks = findCompany?.tasks?.filter(task => task.status === 'close') || [];
 
 
     useEffect(() => {

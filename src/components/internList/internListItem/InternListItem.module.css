@@ -1,0 +1,66 @@
+.main {
+    background: var(--gray);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    list-style: none;
+
+
+
+    & input {
+        font-size: 18px;
+        padding: 5px;
+        width: 45px;
+        border: 2px solid var(--green40);
+        border-radius: 5px;
+    }
+}
+
+.main strong {
+    display: block;
+    margin-bottom: 10px;
+
+}
+
+.listItemСriterion {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.listItemСriterion {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.listItemСriterion a {
+    color: var(--green80);
+    text-decoration: underline;
+}
+
+
+.imgEmailWrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.internSceleton {
+    width: 35px;
+    height: 35px;
+    background-color: var(--green80);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.internSceleton svg {
+    width: 20px;
+}

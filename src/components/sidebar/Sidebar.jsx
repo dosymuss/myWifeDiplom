@@ -118,7 +118,11 @@ const Sidebar = () => {
 
     return (
         <aside className={styles.sidebar}>
-            <img src={logo} alt="" />
+            <div className={styles.logo}>
+                <img src={logo} alt="" />
+                <h1>InternFlow</h1>
+
+            </div>
             <div className={styles.sideItemWrap}>
                 {
                     sidebarItem.map((item) => (

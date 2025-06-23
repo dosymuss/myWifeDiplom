@@ -83,20 +83,14 @@ th {
     background: white;
     padding: 20px;
     border-radius: 10px;
-    min-width: 300px;
-    max-height: 80%;
-    overflow-y: auto;
 }
 
 .dialog {
     border: none;
     border-radius: 8px;
     padding: 0;
-    width: 400px;
-    max-width: 90vw;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    background-color: white;
-}
+    background-color: white;}
 
 .centered {
     position: fixed;
@@ -106,8 +100,18 @@ th {
 }
 
 .modalContent {
+    width: 500px;
     padding: 20px;
+    position: relative;
 }
+
+.closeBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+}
+
 
 .modalTitle {
     margin: 0 0 15px;
@@ -116,9 +120,9 @@ th {
 }
 
 .taskList {
-    max-height: 300px;
-    overflow-y: auto;
-    margin-bottom: 15px;
+    /* max-height: 400px; */
+    /* overflow-y: auto; */
+    margin-bottom: 20px;
     font-size: 1rem;
 }
 
@@ -126,9 +130,7 @@ th {
     padding-left: 20px;
 }
 
-.taskList li {
-    margin-bottom: 10px;
-}
+
 
 button {
     background-color: var(--green80);
@@ -143,24 +145,3 @@ button {
 
 
 
-.taskList li {
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 10px 15px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    list-style: none;
-
-    & strong {
-        margin-bottom: 5px;
-    }
-
-    & input {
-        font-size: 18px;
-        padding: 5px;
-        width: 25px;
-        border: 2px solid var(--green40);
-        border-radius: 5px;
-    }
-}
