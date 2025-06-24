@@ -1,0 +1,58 @@
+.main {
+    height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.codeWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.codeTitle {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.codeBlocks {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.codeBlock {
+    height: 45px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: var(--gray);
+}
+
+.resetBtn {
+    border-radius: 5px;
+    width: 40px;
+    height: 30px;
+    background: var(--green60);
+
+    & img {
+        width: 20px;
+    }
+}
+
+.titleWrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

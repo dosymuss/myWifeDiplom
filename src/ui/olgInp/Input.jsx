@@ -25,7 +25,7 @@ const Input = ({ title, placeholder, password, login, err, ...props }) => {
       <div className={style.passInp}>
         <div className={style.signUpForgetten}>
           <p className={style.inpTitle}>{title}</p>
-          {login ? <Link to="#">Forgetten password</Link> : null}
+          {/* {login ? <Link to="#">Forgetten password</Link> : null} */}
         </div>
         <div className={style.inputPass}>
           <input type={type} placeholder={placeholder} {...props} />

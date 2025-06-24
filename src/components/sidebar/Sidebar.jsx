@@ -11,6 +11,7 @@ import ListIcon from "../../assets/sidebar/ListIcon"
 import UsersIcon from "../../assets/sidebar/UsersIcon"
 
 import styles from "./Sidebar.module.css"
+import PlusIcon from "../../assets/sidebar/PlusIcon"
 
 
 const SideItem = ({ img, text, path, ...props }) => {
@@ -88,6 +89,16 @@ const Sidebar = () => {
                     text: "Поиск",
                     path: "/search"
                 }
+            ]
+            setSidebarItem(sidebarItems)
+        }
+        if (role === "admin") {
+            const sidebarItems = [
+                {
+                    img: <HomeIcon />,
+                    text: "Главная",
+                    path: "/admin"
+                },
             ]
             setSidebarItem(sidebarItems)
         }

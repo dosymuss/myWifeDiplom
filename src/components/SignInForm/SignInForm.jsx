@@ -11,6 +11,7 @@ import { validationLogin } from '../../code/validation'
 import styles from './SignInForm.module.css'
 import { useCompany } from '../../store/company'
 import { useEffect, useState } from 'react'
+import { getAdminData } from '../../api/admin'
 
 
 const SignInForm = () => {
@@ -24,6 +25,7 @@ const SignInForm = () => {
   const fetchGetCompany = useCompany(state => state.fetchGetCompany)
 
   const [queryErr, setQueryErr] = useState(getCompanyErr)
+  const [adminData, setAdminData] = useState({})
 
 
   const formik = useFormik({
@@ -38,8 +40,15 @@ const SignInForm = () => {
       const company = companies.find(item => item?.hr?.email === values.email)
 
       if (!company || company?.hr?.password !== values.password) {
-        setQueryErr("Ошибка в введенных данных");
-        return;
+        if (values.email === adminData?.email && values.password === adminData?.password) {
+          localStorage.setItem("companyRole", "admin");
+          localStorage.setItem("is_auth", JSON.stringify(true));
+          navigate("/admin")
+          return
+        } else {
+          setQueryErr("Ошибка введеных данных")
+          return
+        }
       }
 
       // всё ок
@@ -54,6 +63,9 @@ const SignInForm = () => {
 
   useEffect(() => {
     fetchGetCompany()
+    getAdminData().then((res) => {
+      setAdminData(res.data)
+    })
   }, [])
 
 
@@ -72,7 +84,7 @@ const SignInForm = () => {
         <Input
           placeholder={"Пароль"}
           title={"Ваш пароль"}
-          // password={true}
+          password={true}
           login={true}
           name="password"
           value={formik.values.password}

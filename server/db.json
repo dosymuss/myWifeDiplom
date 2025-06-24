@@ -1,18 +1,10 @@
 {
   "company": [
     {
-      "id": "1",
-      "hr": {
-        "role": "hr"
-      },
-      "supervisor": [],
-      "interns": []
-    },
-    {
       "id": "7cea",
       "hr": {
         "role": "hr",
-        "name": "Saima Telecom",
+        "name": "sai",
         "email": "dastanalmazbekuulu9@gmail.com",
         "password": "Dastan555666$",
         "confirm_password": "Dastan555666$",
@@ -22,29 +14,32 @@
         },
         "birthday": "19.04.2004",
         "image": "https://i.pinimg.com/736x/09/73/c6/0973c6391526489b03be49add7e15ca0.jpg",
-        "company": "здщшгрнпаспрнгш90щ"
+        "company": "здщшгрнпаспрнгш90щle,,,,,,,,,,,,,,evl,evjweuefhejiwjiogjeiogjwieogjiowejgiwjegioweoigjiewjgiojewiogjewigjiowejgioewjgiowejgijweoigjweiogjweiogjiowejgiowejgiwejgiojewiogjwieojgiowjeiogjewiogjwijgiewjgiojweigjweiogjiowejgioewgjwejgiowejgioewjiowejgiojwegiojewgiojweiogjweoigjewijgewiojgiowejgijewigjewiojgiewjgioewjgioewjgiowejgiojewiogjweiogjioewjgioewjgioewjgiojewgijewiogjewiogjioewjgioewjgioewjgiojweoigjewiojgioewjgioewjgiowejgijewiogjewiogjioewjgioewjgiojewiogjewigjoiewjgioewjgioejwgiojewiogjweiogjioewjgioewjgioewjgjweiogjewiogjewiojgiowejgioewjgiojewigjweoijgioewjgiwjeigjewoigjiowejgiewjgioewjgiojewogeiowgjwogjoiewjgioewjgijewiogjewiogjioewjgioewjgiojewiogjweiogjioewjgioewjgioewjgiojewiogjewiogjiowejgioewjgio"
       },
       "supervisor": [
         {
-          "id": "1749411695550",
-          "email": "almazbekovd12@gmail.com",
-          "code": "326591",
-          "departament": "ОРПО",
-          "name": "Алмазбеков Дастан Алмазбекович",
-          "birthday": "14.05.2003",
-          "image": "https://i.pinimg.com/736x/41/be/77/41be776eb3651a0607d9e5bdc3c7c8e5.jpg"
+          "id": "1750693625360",
+          "email": "test@gmail.com",
+          "code": "822514",
+          "departament": "ОАП",
+          "name": "endTest",
+          "birthday": "19.04.2004",
+          "image": "https://i.pinimg.com/736x/e8/10/f3/e810f308a749191bf2a83505df4714e6.jpg"
         },
         {
-          "id": "1750338011735",
-          "email": "test2@gmail.com",
-          "code": "343790",
-          "departament": "ОАП "
+          "id": "1750693876558",
+          "email": "test1@gmail.com",
+          "code": "889357",
+          "departament": "ОУАА",
+          "name": "daekae",
+          "birthday": "15.05.2001",
+          "image": "https://i.pinimg.com/736x/09/73/c6/0973c6391526489b03be49add7e15ca0.jpg"
         }
       ],
       "interns": [
         {
           "id": "1749416091423",
-          "email": "test@gmail.com",
+          "email": "test3@gmail.com",
           "code": "644462",
           "departament": "ОРПО",
           "tasks": [
@@ -75,8 +70,8 @@
             "status": "open"
           },
           "recomeLetter": "",
-          "name": "hyiujik",
-          "birthday": "gyhujk",
+          "name": "Исмаил Алиев",
+          "birthday": "14,05,1993",
           "image": "https://i.pinimg.com/736x/09/73/c6/0973c6391526489b03be49add7e15ca0.jpg"
         }
       ],
@@ -308,5 +303,9 @@
         }
       ]
     }
-  ]
+  ],
+  "admin": {
+    "email": "admin@gmail.com",
+    "password": "Admin555666$"
+  }
 }

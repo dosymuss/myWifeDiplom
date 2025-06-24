@@ -1,9 +1,9 @@
 import { mainInstance } from ".";
 
-export const editInternProfile = async (obj) => {
+export const editInternProfile = async (id, obj) => {
     try {
         const companyId = localStorage.getItem("companyId")
-        const res = await mainInstance.patch(`/${companyId}`, obj)
+        const res = await mainInstance.patch(`/${id ? id : companyId}`, obj)
         return res
     } catch (error) {
         throw new Error(

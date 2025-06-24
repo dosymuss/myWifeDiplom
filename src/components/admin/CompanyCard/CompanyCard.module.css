@@ -1,0 +1,46 @@
+.main {
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 20px 15px;
+    width: 500px;
+}
+
+.backImg {
+    height: 50px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.segmentWrap {
+    width: 100%;
+    height: 45px;
+    border: 2px solid var(--green60);
+    border-radius: 10px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.buttonWrap{
+    display: flex;
+    gap: 5px;
+}
+
+.buttonWrap button{
+   width: 35px;
+   height: 35px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+}
+
+.buttonWrap img{
+   width: 20px;
+   height: 20px;
+   
+}

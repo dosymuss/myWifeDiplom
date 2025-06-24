@@ -1,16 +1,18 @@
 import { useFormik } from "formik"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
-import Button from "../../ui/button/Button"
-import Input from "../../ui/input/Input"
-import { useSuper } from "../../store/supervisor"
+import Button from "../../../ui/button/Button"
+import Input from "../../../ui/input/Input"
+import { useSuper } from "../../../store/supervisor"
 
-import { validationForProfile } from "../../code/validation"
-import imageSceleton from "../../assets/profileEdit/imageSceleton.svg"
-import { editSuperProfile } from "../../api/supervisor"
 
-import styles from "./EditSuper.module.css"
+import { validationForProfile } from "../../../code/validation"
+import imageSceleton from "../../../assets/profileEdit/imageSceleton.svg"
+import { editSuperProfile } from "../../../api/supervisor"
+
+import styles from "./AdminEditSupet.module.css"
+import { useCompany } from "../../../store/company"
 
 
 const ImageBlock = ({ image }) => {
@@ -31,13 +33,20 @@ const ImageBlock = ({ image }) => {
 
 
 
-const EditSuper = () => {
+const AdminEditSuper = () => {
+
+    const { companyId, internId } = useParams();
 
     const [image, setImage] = useState("")
     const [queryErr, setQueryErr] = useState(null)
 
-    const supervisor = useSuper(state => state.supervisor)
-    const supervisors = useSuper(state => state.supervisors)
+    const companies = useCompany(state => state.companies)
+    const fetchGetCompany = useCompany(state => state.fetchGetCompany)
+
+    const ourCompany = companies?.find(item => item?.id === companyId)
+
+    const supervisor = ourCompany?.supervisor?.find(item => item.id === internId)
+
     const navigate = useNavigate()
 
     const formik = useFormik({
@@ -52,7 +61,7 @@ const EditSuper = () => {
         onSubmit: (values) => {
             console.log(values);
 
-            const updatedSupervisors = supervisors.map(item =>
+            const updatedSupervisors = ourCompany?.supervisor?.map(item =>
                 item.id === supervisor.id ? { ...item, ...values } : item
             );
 
@@ -60,9 +69,9 @@ const EditSuper = () => {
                 supervisor: updatedSupervisors
             };
 
-            editSuperProfile(null, newSuper)
+            editSuperProfile(companyId, newSuper)
                 .then((res) => {
-                    navigate("/super-profile")
+                    navigate("/admin")
                 })
                 .catch((err) => {
                     setQueryErr(err.message);
@@ -70,6 +79,11 @@ const EditSuper = () => {
 
         }
     })
+
+
+    useEffect(() => {
+        fetchGetCompany()
+    }, [])
 
     return (
         <div>
@@ -92,4 +106,4 @@ const EditSuper = () => {
     )
 }
 
-export default EditSuper
+export default AdminEditSuper

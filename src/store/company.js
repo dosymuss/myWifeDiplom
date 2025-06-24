@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { getCompanies, updateCompany, updateCompanyInterns, updateCompanyTasks } from "../api/company";
+import { deleteCompany, getCompanies, updateCompany, updateCompanyInterns, updateCompanyTasks } from "../api/company";
 
 
 
@@ -215,6 +215,36 @@ export const useCompany = create(devtools(
             } catch (err) {
                 console.error("Ошибка при обновлении данных интерна:", err);
                 throw err;
+            }
+        },
+
+        zDeleteCompany: async (id) => {
+            const companies = get().companies;
+
+            try {
+                const res = await deleteCompany(id)
+                if (res.status === 200 || res.status === 201) {
+                    set({ companies: companies?.filter((item) => item?.id !== id) })
+                }
+            } catch (error) {
+
+            }
+        },
+
+        deleteSuper: async (companyId, newCompany, newSupers) => {
+            try {
+                const res = await updateCompany(companyId, newCompany)
+
+            } catch (error) {
+                throw error
+            }
+        },
+        deleteIntern: async (companyId, newCompany, newInterns) => {
+            try {
+                const res = await updateCompany(companyId, newCompany)
+
+            } catch (error) {
+                throw error
             }
         }
 

@@ -1,22 +1,25 @@
 import { useFormik } from "formik"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
-import { useHr } from "../../store/useHr"
-import DocumInp from "../../components/profile/DocumInp/DocumInp"
-import Button from "../../ui/button/Button"
-import Input from "../../ui/input/Input"
 
-import { validationForProfile } from "../../code/validation"
-import imageSceleton from "../../assets/profileEdit/imageSceleton.svg"
+import { useHr } from "../../../store/useHr"
+import DocumInp from "../../../components/profile/DocumInp/DocumInp"
+import Button from "../../../ui/button/Button"
+import Input from "../../../ui/input/Input"
 
-import styles from "./EditHrCompany.module.css"
-import { edithHrInfo } from "../../api/hr"
+import { validationForProfile } from "../../../code/validation"
+import imageSceleton from "../../../assets/profileEdit/imageSceleton.svg"
+
+import styles from "./EditCompany.module.css"
+import { edithHrInfo } from "../../../api/hr"
+import { useCompany } from "../../../store/company"
+import { updateCompany } from "../../../api/company"
 
 
 const ImageBlock = ({ image }) => {
     return (
-        <div className={styles.imageBlock}>
+        <div>
             <p className={styles.imageText}>Мой аватар</p>
             {
                 image ?
@@ -32,43 +35,77 @@ const ImageBlock = ({ image }) => {
 
 
 
-const EditHrCompany = () => {
+const EditCompany = () => {
+
+    const { id } = useParams()
 
     const [image, setImage] = useState("")
     const [queryErr, setQueryErr] = useState(null)
 
-    const hrInfo = useHr(state => state.hrInfo)
+    const [hrInfo, setHrInfo] = useState({})
+
+    const companies = useCompany(state => state.companies)
+    const fetchGetCompany = useCompany(state => state.fetchGetCompany)
+    const ourCompany = companies?.find(item => item?.id === id)
+
+
+
+
     const navigate = useNavigate()
 
 
     const formik = useFormik({
         initialValues: {
-            name: hrInfo ? hrInfo.name : "",
-            birthday: hrInfo ? hrInfo.birthday : "",
-            email: hrInfo ? hrInfo.email : "",
-            image: hrInfo ? hrInfo.image : "",
-            company: hrInfo ? hrInfo.company : "",
+            name: hrInfo?.name || "",
+            birthday: hrInfo?.birthday || "",
+            email: hrInfo?.email || "",
+            image: hrInfo?.image || "",
+            company: hrInfo?.company || "",
         },
+        enableReinitialize: true, // <-- вот это важно
         validateOnChange: true,
         validationSchema: validationForProfile,
         onSubmit: (values) => {
-
-            const newObj = {
+            const company = {
+                ...ourCompany,
                 hr: {
-                    ...hrInfo, ...values
+                    ...hrInfo,
+                    name: values?.name,
+                    birthday: values?.birthday,
+                    email: values?.email,
+                    image: values?.image,
+                    company: values?.company,
+
                 }
             }
 
-            edithHrInfo(newObj).then((res) => {
-                if (res.status === 200) {
-                    navigate("/hr_profile")
+
+            updateCompany(id, company).then((res) => {
+                if (res) {
+                    navigate("/admin")
                 }
-            }).catch((err) => {
-                setQueryErr(err.message)
             })
+
 
         }
     })
+
+
+    useEffect(() => {
+        fetchGetCompany()
+    }, [])
+
+    useEffect(() => {
+        console.log(hrInfo);
+
+    }, [hrInfo])
+
+    useEffect(() => {
+        if (companies && companies?.length > 0) {
+            const ourCompany = companies?.find(item => item?.id === id)
+            setHrInfo(ourCompany?.hr)
+        }
+    }, [companies])
 
     return (
         <div>
@@ -92,4 +129,4 @@ const EditHrCompany = () => {
     )
 }
 
-export default EditHrCompany
+export default EditCompany

@@ -22,6 +22,13 @@ import InternSuperSign from './pages/InternSuperSign/InternSuperSign.jsx'
 import SuperProfile from './pages/superProfile/SuperProfile.jsx'
 import EditSuper from './pages/EditSuper/EditSuper.jsx'
 import EditTaskPage from './pages/EditTaskPage/EditTaskPage.jsx'
+import AdminPage from './pages/AdminPage/AdminPage.jsx'
+import EditCompany from './pages/AdminActionsPage/EditCompany/EditCompany.jsx'
+import AdminCreateWorkers from './pages/AdminActionsPage/AdminCreateWorkers/AdminCreateWorlers.jsx'
+import AdminSuperList from './pages/AdminActionsPage/AdminSuperList/AdminSuperList.jsx'
+import AdminEditSuper from './pages/AdminActionsPage/AdminEditSuper/AdminEditSuper.jsx'
+import AdminInternList from './pages/AdminActionsPage/AdminInternList/AdminInternList.jsx'
+import AdminEditIntern from './pages/AdminActionsPage/AdminEditIntern/AdminEditIntern.jsx'
 
 
 
@@ -106,6 +113,38 @@ const router = createBrowserRouter([
         path: "/edit-task/:id",
         element: <EditTaskPage />
       },
+      {
+        path: "/admin",
+        element: <AdminPage />
+      },
+      {
+        path: "/edit-company/:id",
+        element: <EditCompany />
+      },
+      {
+        path: "/create-super/:id",
+        element: <AdminCreateWorkers />
+      },
+      {
+        path: "/create-intern/:id",
+        element: <AdminCreateWorkers />
+      },
+      {
+        path: "/super-list/:id",
+        element: <AdminSuperList />
+      },
+      {
+        path: "/admin-intern-list/:id",
+        element: <AdminInternList />
+      },
+      {
+        path: "/admin-edit-super/:companyId/:internId",
+        element: <AdminEditSuper />
+      },
+      {
+        path: "/admin-edit-intern/:companyId/:internId",
+        element: <AdminEditIntern />
+      }
 
     ]
   }

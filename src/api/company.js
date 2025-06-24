@@ -31,3 +31,13 @@ export const updateCompany = async (companyId, updateCompany) => {
 
     return res.data;
 };
+
+
+export const deleteCompany = async (id) => {
+    try {
+        const res = await mainInstance.delete(`/${id}`)
+        return res
+    } catch (error) {
+        throw error
+    }
+}

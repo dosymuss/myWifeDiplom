@@ -7,9 +7,17 @@
     font-weight: 600;
     font-size: 20px;
     color: var(--green60);
+    width: calc(100vw - 200px - 700px);
+
+    /* Добавлено */
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 .wrap {
     display: flex;
     flex-direction: column;
+    width: calc(100vw - 200px - 700px);
 }
