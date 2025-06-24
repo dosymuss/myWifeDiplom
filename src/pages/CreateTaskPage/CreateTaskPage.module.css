@@ -15,6 +15,9 @@
         width: 40px;
         height: 30px;
         background: var(--green60);
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         & img {
             width: 20px;

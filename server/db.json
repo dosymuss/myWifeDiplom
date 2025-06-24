@@ -34,6 +34,12 @@
           "name": "daekae",
           "birthday": "15.05.2001",
           "image": "https://i.pinimg.com/736x/09/73/c6/0973c6391526489b03be49add7e15ca0.jpg"
+        },
+        {
+          "id": "1750803126716",
+          "email": "TEST2@gmail.com",
+          "code": "168384",
+          "departament": "ОРПДУ"
         }
       ],
       "interns": [
@@ -41,7 +47,7 @@
           "id": "1749416091423",
           "email": "test3@gmail.com",
           "code": "644462",
-          "departament": "ОРПО",
+          "departament": "ОАП",
           "tasks": [
             {
               "id": "1750158997999",
@@ -72,7 +78,17 @@
           "recomeLetter": "",
           "name": "Исмаил Алиев",
           "birthday": "14,05,1993",
-          "image": "https://i.pinimg.com/736x/09/73/c6/0973c6391526489b03be49add7e15ca0.jpg"
+          "image": "https://i.pinimg.com/736x/41/be/77/41be776eb3651a0607d9e5bdc3c7c8e5.jpg"
+        },
+        {
+          "id": "1750803075339",
+          "email": "test4@gmail.com",
+          "code": "418637",
+          "departament": "ОАП",
+          "tasks": [],
+          "workTask": [],
+          "progress": {},
+          "recomeLetter": ""
         }
       ],
       "tasks": [

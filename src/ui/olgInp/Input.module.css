@@ -52,6 +52,9 @@ outline: none;
     background-color: transparent;
     margin-right: 10px;
     outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .errText{

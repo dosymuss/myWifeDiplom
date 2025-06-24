@@ -28,9 +28,10 @@ const ProgressBlock = () => {
         const completedSteps = steps.filter(step => step.is_done).length;
         const totalSteps = steps.length;
 
-        // Вычисляем процент выполнения
-        return (completedSteps / totalSteps) * 100;
+        // Округляем до 2 знаков после запятой и преобразуем обратно в число
+        return parseFloat(((completedSteps / totalSteps) * 100).toFixed(2));
     };
+
 
 
     const percent = calculateProgress(task?.steps)

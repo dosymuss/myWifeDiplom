@@ -61,16 +61,16 @@ const EditProfilePage = () => {
             );
 
             console.log(updatedInterns);
-            
+
 
             const newIntern = {
                 interns: updatedInterns
             };
 
             console.log(newIntern);
-            
 
-            editInternProfile(newIntern)
+
+            editInternProfile(null, newIntern)
                 .then((res) => {
                     navigate("/profile")
                 })
@@ -81,23 +81,26 @@ const EditProfilePage = () => {
     })
 
     return (
-        <div>
-            <h2 className={styles.title}>Мой профиль</h2>
-            <div className={styles.contentWrap}>
-                <div className={styles.form}>
-                    <Input name={"name"} value={formik.values.name} err={formik.errors.name} onChange={formik.handleChange} onBlur={formik.handleBlur} inpTitle={"Мое ФИО"} placeholder={"ФИО"} />
-                    <Input name={"birthday"} value={formik.values.birthday} err={formik.errors.birthday} onChange={formik.handleChange} onBlur={formik.handleBlur} inpTitle={"Дата рождения"} placeholder={"19.04.2004"} />
-                    <Input name={"email"} value={formik.values.email} err={formik.errors.email} onChange={formik.handleChange} onBlur={formik.handleBlur} inpTitle={"Моя почта"} placeholder={"test@gmail.com"} />
-                    <Input name={"image"} value={formik.values.image} err={formik.errors.image} onChange={(e) => {
-                        formik.handleChange(e)
-                        setImage(e.target.value)
-                    }} onBlur={formik.handleBlur} inpTitle={"Мой аватар"} placeholder={"https://..."} />
-                    <DocumInp />
-                    <Button type="submit" onClick={formik.handleSubmit} text={"Сохранить изменения"} disabled={!formik.isValid} />
-                    {queryErr && <p className="error-text">{queryErr}</p>}
+        <div className={styles.main}>
+            <div>
+                <h2 className={styles.title}>Мой профиль</h2>
+                <div className={styles.contentWrap}>
+                    <div className={styles.form}>
+                        <Input name={"name"} value={formik.values.name} err={formik.errors.name} onChange={formik.handleChange} onBlur={formik.handleBlur} inpTitle={"Мое ФИО"} placeholder={"ФИО"} />
+                        <Input name={"birthday"} value={formik.values.birthday} err={formik.errors.birthday} onChange={formik.handleChange} onBlur={formik.handleBlur} inpTitle={"Дата рождения"} placeholder={"19.04.2004"} />
+                        <Input name={"email"} value={formik.values.email} err={formik.errors.email} onChange={formik.handleChange} onBlur={formik.handleBlur} inpTitle={"Моя почта"} placeholder={"test@gmail.com"} />
+                        <Input name={"image"} value={formik.values.image} err={formik.errors.image} onChange={(e) => {
+                            formik.handleChange(e)
+                            setImage(e.target.value)
+                        }} onBlur={formik.handleBlur} inpTitle={"Мой аватар"} placeholder={"https://..."} />
+                        <DocumInp />
+                        <Button type="submit" onClick={formik.handleSubmit} text={"Сохранить изменения"} disabled={!formik.isValid} />
+                        {queryErr && <p className="error-text">{queryErr}</p>}
+                    </div>
                 </div>
-                <ImageBlock image={formik.values.image ? formik.values.image : image} />
+
             </div>
+            <ImageBlock image={formik.values.image ? formik.values.image : image} />
         </div>
     )
 }

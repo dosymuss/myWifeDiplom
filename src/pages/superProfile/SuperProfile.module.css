@@ -1,4 +1,7 @@
-.content {}
+.content {
+    display: flex;
+    
+}
 
 .main {
     height: calc(100vh - 80px);

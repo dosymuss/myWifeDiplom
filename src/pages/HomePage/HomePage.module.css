@@ -12,3 +12,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+.statisticBlock{
+    margin-top: 32px;
+}

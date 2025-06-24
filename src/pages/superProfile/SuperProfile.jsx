@@ -98,30 +98,31 @@ const SuperProfile = () => {
         return (
             <div className={styles.main}>
                 <div className={styles.content}>
-                    <ProfileTitle />
+                    <div>
+                        <ProfileTitle />
+                        <div className={styles.mainWrap}>
+                            <div className={styles.profileTextWrap}>
+                                <ProfileTextItem title={"Мое ФИО"} text={supervisor?.name ? supervisor.name : "Тест Тестов"} />
+                                <ProfileTextItem title={"Дата рождения:"} text={supervisor?.birthday ? supervisor.birthday : "19.04.2004"} />
+                                <ProfileTextItem title={"Моя почта"} text={supervisor ? supervisor.email : "nurzhan@gmail.com"} />
 
-                    <div className={styles.mainWrap}>
-                        <div className={styles.profileTextWrap}>
-                            <ProfileTextItem title={"Мое ФИО"} text={supervisor?.name ? supervisor.name : "Тест Тестов"} />
-                            <ProfileTextItem title={"Дата рождения:"} text={supervisor?.birthday ? supervisor.birthday : "19.04.2004"} />
-                            <ProfileTextItem title={"Моя почта"} text={supervisor ? supervisor.email : "nurzhan@gmail.com"} />
-
-                            <ProfileLinks />
+                                <ProfileLinks />
 
 
-                        </div>
-
-                        <div>
-                            <div className={styles.imageBlock}>
-                                <p>Мой аватар</p>
-                                <img src={supervisor?.image ? supervisor.image : "https://i.pinimg.com/736x/87/fe/e3/87fee31c452cf1a7ee6e1b65afbac986.jpg"} alt="" />
                             </div>
+
+
+
                         </div>
-
-
                     </div>
 
 
+                    <div>
+                        <div className={styles.imageBlock}>
+                            <p>Мой аватар</p>
+                            <img src={supervisor?.image ? supervisor.image : "https://i.pinimg.com/736x/87/fe/e3/87fee31c452cf1a7ee6e1b65afbac986.jpg"} alt="" />
+                        </div>
+                    </div>
 
                 </div>
             </div>

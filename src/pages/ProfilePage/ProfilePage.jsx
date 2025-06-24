@@ -102,23 +102,21 @@ const ProfilePage = () => {
         )
     } else {
         return (
-            <div>
-
-                <ProfileTitle />
-
-                <div className={styles.mainWrap}>
-                    <div className={styles.profileTextWrap}>
-                        <ProfileTextItem title={"Мое ФИО"} text={intern?.name ? intern.name : "Неизвестнов Неизвест Неизвестович"} />
-                        <ProfileTextItem title={"Дата рождения:"} text={intern?.birthday ? intern.birthday : "00.00.0000"} />
-                        <ProfileTextItem title={"Моя почта"} text={intern ? intern.email : "unknow@gmail.com"} />
-                        <RecomeLetter letter={intern.recomeLetter} />
-                        {/* <DocumInp docum={documents} /> */}
+            <div className={styles.main}>
+                <div>
+                    <ProfileTitle />
+                    <div className={styles.mainWrap}>
+                        <div className={styles.profileTextWrap}>
+                            <ProfileTextItem title={"Мое ФИО"} text={intern?.name ? intern.name : "Неизвестнов Неизвест Неизвестович"} />
+                            <ProfileTextItem title={"Дата рождения:"} text={intern?.birthday ? intern.birthday : "00.00.0000"} />
+                            <ProfileTextItem title={"Моя почта"} text={intern ? intern.email : "unknow@gmail.com"} />
+                            <RecomeLetter letter={intern.recomeLetter} />
+                            {/* <DocumInp docum={documents} /> */}
+                        </div>
                     </div>
-
-
-                    <ImageBlock image={intern ? intern.image : null} />
-
                 </div>
+
+                <ImageBlock image={intern ? intern.image : null} />
 
 
 

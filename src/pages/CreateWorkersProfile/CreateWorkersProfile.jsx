@@ -86,7 +86,7 @@ const CreateWorkersProfile = () => {
         ],
       };
 
-      createInternAccount(obj)
+      createInternAccount(null, obj)
         .then((res) => {
           // успешное добавление — можно, например, очистить форму или показать сообщение
           setOpenModal(!openModal)
@@ -113,7 +113,7 @@ const CreateWorkersProfile = () => {
         ],
       };
 
-      createSuperAccount(obj)
+      createSuperAccount(null, obj)
         .then((res) => {
           // успешное добавление — можно, например, очистить форму или показать сообщение
           setOpenModal(!openModal)

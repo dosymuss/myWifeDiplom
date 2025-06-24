@@ -1,3 +1,10 @@
+.main{
+    display: flex;
+    gap: 40px;
+}
+
+
+
 .form {
     display: flex;
     flex-direction: column;
@@ -28,7 +35,7 @@
 .image {
     border-radius: 10px;
     width: 390px;
-    height: 401px;
+    height: 410px;
     object-fit: cover;
     margin-bottom: 20px;
 }

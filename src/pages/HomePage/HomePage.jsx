@@ -88,7 +88,7 @@ const HomePage = () => {
                 </div>
             </div>
 
-            <div>
+            <div className={styles.statisticBlock}>
                 <ProgressBlock />
                 <ResultBlock />
             </div>
